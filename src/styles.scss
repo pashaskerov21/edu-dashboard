@@ -122,7 +122,7 @@ section {
     width: 100%;
     height: 100vh;
     display: flex;
-    overflow: hidden;
+    // overflow: hidden;
 
     .right-wrapper {
         display: flex;
@@ -132,7 +132,7 @@ section {
 
         .content-wrapper {
             flex: 1;
-            overflow: auto;
+            overflow: hidden;
             background-color: light-dark($bg-color-4, $bg-color-2);
             padding: 0 20px;
             @media (min-width: 992px){
@@ -162,10 +162,13 @@ section {
     width: 100%;
     max-width: 100%;
     overflow-x: auto;
+    
+    @include row-start;
 
     table {
-        // display: block;
+        width: 100%;
         min-width: 1000px;
+        
     }
 
     thead {
@@ -185,6 +188,9 @@ section {
             background-color: light-dark($bg-color-4, $bg-color-2);
             color: light-dark($txt-color-3, $txt-color-1);
             border: none;
+        }
+        tr div{
+            background-color: transparent !important;
         }
     }
 

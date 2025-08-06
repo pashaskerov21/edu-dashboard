@@ -120,6 +120,9 @@ nav {
             top: 50%;
             right: 10px;
             transform: translateY(-50%);
+            span{
+                display: none;
+            }
 
             @media (min-width: 768px) {
                 background-color: $primary-color;
@@ -132,6 +135,9 @@ nav {
                 &:hover{
                     opacity: 0.7;
                 }
+                span{
+                    display: block;
+                }
             }
         }
 
@@ -140,6 +146,10 @@ nav {
             top: 50%;
             left: 10px;
             transform: translateY(-50%);
+            display: none;
+            @media (min-width: 768px){
+                display: block;
+            }
         }
 
     }
