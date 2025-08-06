@@ -10,7 +10,6 @@ import { AddExam } from './pages/exams/add/add';
 import { LessonList } from './pages/lessons/list/list';
 import { StudentList } from './pages/students/list/list';
 import { ExamList } from './pages/exams/list/list';
-import { EditLesson } from './pages/lessons/edit/edit';
 
 export const routes: Routes = [
   {
@@ -50,11 +49,6 @@ export const routes: Routes = [
         component: AddStudent,
         data: { breadcrumb: 'add-student' },
       },
-      {
-        path: ':id',
-        component: EditLesson,
-        data: { breadcrumb: 'edit-lesson' },
-      }
     ]
   },
   {
