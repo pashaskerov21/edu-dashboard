@@ -1,0 +1,170 @@
+@use '../../scss/mixin' as *;
+@use '../../scss/variables' as *;
+
+nav {
+    width: 100%;
+    background-color: light-dark($bg-color-3, $bg-color-1);
+    padding: 10px;
+    @include row-center;
+    position: relative;
+
+    //  box-shadow: 0 0 10px light-dark($black-1, $white-1);
+    .navbar-icon {
+        color: light-dark($txt-color-3, $txt-color-1);
+        cursor: pointer;
+        transition: all 0.2s;
+
+        &:hover {
+            color: light-dark($primary-color, $txt-color-4);
+        }
+    }
+
+    .language-dropdown {
+        position: relative;
+        padding: 15px 0;
+        color: light-dark($txt-color-3, $txt-color-1);
+        cursor: pointer;
+
+        .active-lang {
+            @include row-center;
+            gap: 5px;
+
+            span {
+                text-transform: capitalize;
+            }
+
+            i {
+                font-size: 10px;
+                transition: all 0.2s;
+            }
+        }
+
+        .lang-menu {
+            position: absolute;
+            top: 98%;
+            right: 0;
+            border: 1px solid light-dark($txt-color-3, $txt-color-1);
+            background-color: light-dark($bg-color-4, $bg-color-2);
+            border-radius: 10px;
+            padding: 10px;
+            opacity: 0;
+            transition: all 0.3s;
+            display: none;
+
+        }
+
+        &:hover {
+            .active-lang {
+                i {
+                    transform: rotate(-180deg);
+                }
+            }
+
+            .lang-menu {
+                display: block;
+                animation: langMenuAnimation 0.3s ease forwards;
+
+                .lang-item {
+                    color: light-dark($txt-color-3, $txt-color-1);
+
+                    &:hover {
+                        color: light-dark($primary-color, $txt-color-4);
+                    }
+                }
+            }
+        }
+    }
+
+    .search-form {
+        position: absolute;
+        top: 100%;
+        right: 22px;
+        width: 0;
+        opacity: 0;
+        transition: all 0.3s;
+        display: none;
+
+        &.opened {
+            display: block;
+            animation: searchFormAnimation 0.5s ease forwards;
+        }
+
+        @media (min-width: 768px) {
+            width: 310px;
+            opacity: 1;
+            display: block;
+            position: relative;
+            top: 0;
+            left: 0;
+            @include row-between;
+        }
+
+        input {
+            width: 100%;
+            background-color: transparent;
+            border: 1px solid light-dark($txt-color-3, $txt-color-1);
+            background-color: light-dark($bg-color-4, $bg-color-2);
+            border-radius: 5px;
+            padding: 5px 10px;
+            outline: none;
+
+            @media (min-width: 768px) {
+                padding-left: 35px;
+                border: none;
+                background-color: light-dark(#F0F3F8, #464F5B);
+            }
+        }
+
+        button {
+            position: absolute;
+            top: 50%;
+            right: 10px;
+            transform: translateY(-50%);
+
+            @media (min-width: 768px) {
+                background-color: $primary-color;
+                color: #fff;
+                padding: 6px 10px;
+                border-radius: 4px;
+                right: 0;
+                font-size: 14px;
+                text-transform: capitalize;
+                &:hover{
+                    opacity: 0.7;
+                }
+            }
+        }
+
+        .before-icon {
+            position: absolute;
+            top: 50%;
+            left: 10px;
+            transform: translateY(-50%);
+        }
+
+    }
+}
+
+@keyframes langMenuAnimation {
+    0% {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes searchFormAnimation {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+        width: 100%;
+        max-width: 240px;
+    }
+}

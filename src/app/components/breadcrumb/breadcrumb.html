@@ -1,0 +1,18 @@
+<div class="row content-header">
+    <div class="col-6 d-flex justify-content-start align-items-center p-0">
+        <h4 class="content-title">
+            {{ breadcrumbs.length > 0 ? (`${breadcrumbs[breadcrumbs.length - 1].label}` | translate) : '' }}
+        </h4>
+    </div>
+    <div class="col-6 d-flex justify-content-end align-items-center p-0">
+        <div class="breadcrumbs" *ngIf="breadcrumbs.length > 0 && breadcrumbs[0].url !== ''">
+            <a routerLink="">{{ 'dashboard' | translate}}</a>
+            <i class="fa-solid fa-chevron-right"></i>
+            <ng-container *ngFor="let bc of breadcrumbs; let last = last">
+                <a *ngIf="!last" [routerLink]="bc.url">{{ `${bc.label}` | translate}}</a>
+                <span *ngIf="last">{{ `${bc.label}` | translate}}</span>
+                <i *ngIf="!last" class="fa-solid fa-chevron-right"></i>
+            </ng-container>
+        </div>
+    </div>
+</div>

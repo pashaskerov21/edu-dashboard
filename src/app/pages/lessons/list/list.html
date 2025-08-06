@@ -1,0 +1,39 @@
+<div class="main-operations">
+    <a class="add-button" routerLink="/lessons/add">{{'add-lesson' | translate}} <i class="fa-solid fa-circle-plus"></i></a>
+    <button class="delete-all" [ngClass]="lessonService.lessons().length === selectedRowIDs.length ? 'active' : ''" *ngIf="lessonService.lessons().length > 0" (click)="selectAll()">
+        {{"select-all" | translate}}
+    </button>
+    <button class="delete-select" *ngIf="selectedRowIDs.length > 0" (click)="deleteSelected()">
+        {{"delete-selected" | translate}}
+    </button>
+</div>
+<div class="table-wrapper">
+    <table class="table table-striped table-centered mb-0">
+        <thead>
+            <tr>
+                <th style="width: 70px;">#</th>
+                <th>{{"lesson-name" | translate}}</th>
+                <th>{{"lesson-code" | translate}}</th>
+                <th>{{"class" | translate}}</th>
+                <th>{{"teacher-fullname" | translate}}</th>
+                <th style="width: 350px;">{{"operations" | translate}}</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let lesson of lessonService.lessons();let i = index">
+                <td>{{i+1}}</td>
+                <td>{{lesson.name}}</td>
+                <td>{{lesson.code}}</td>
+                <td>{{lesson.class}}</td>
+                <td>{{lesson.teacherFirstName}} {{lesson.teacherLastName}}</td>
+                <td>
+                    <div class="operations">
+                        <a href="#" class="edit-btn"><i class="fa-solid fa-edit"></i></a>
+                        <button class="delete-btn" (click)="delete(lesson.id)"><i class="fa-solid fa-trash"></i></button>
+                        <button class="check-btn" [ngClass]="isSelected(lesson.id) ? 'active' : ''" (click)="selectRow(lesson.id)"><i class="fa-solid fa-check"></i></button>
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

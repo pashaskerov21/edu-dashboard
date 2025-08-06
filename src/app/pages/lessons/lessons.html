@@ -1,0 +1,7 @@
+<ng-container *ngIf="isParentRouteActive(); else childContent">
+    <router-outlet></router-outlet>
+</ng-container>
+
+<ng-template #childContent>
+    <router-outlet></router-outlet>
+</ng-template>

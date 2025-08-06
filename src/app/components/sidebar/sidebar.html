@@ -1,0 +1,32 @@
+<aside [ngClass]="isOpen ? 'opened' : 'closed'">
+    <div class="aside-header">
+        <a routerLink="" class="logo">
+            <img src="logo-sm.png" alt="logo">
+            <span class="sidebar-hide-item">{{ 'dashboard' | translate }}</span>
+        </a>
+    </div>
+    <div class="aside-body">
+        <div class="navigation">
+            <div class="navigation-title sidebar-hide-item">{{'navigation' | translate}}</div>
+            <div class="navigation-links">
+                <a routerLink="/lessons">
+                    <i class="fa-solid fa-book"></i>
+                    <span class="sidebar-hide-item">{{'lessons' | translate}}</span>
+                </a>
+                <a routerLink="/students">
+                    <i class="fa-solid fa-users"></i>
+                    <span class="sidebar-hide-item">{{'students' | translate}}</span>
+                </a>
+                <a routerLink="/exams">
+                    <i class="fa-solid fa-clipboard"></i>
+                    <span class="sidebar-hide-item">{{'exams' | translate}}</span>
+                </a>
+                <a routerLink="/deleted">
+                    <i class="fa-solid fa-trash"></i>
+                    <span class="sidebar-hide-item">{{'deleted' | translate}}</span>
+                </a>
+            </div>
+        </div>
+    </div>
+</aside>
+<div class="black-backdrop" [ngClass]="isOpen ? '' : 'd-none'" (click)="onToggleSidebar()"></div>

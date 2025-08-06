@@ -1,0 +1,8 @@
+<ng-container *ngIf="isParentRouteActive(); else childContent">
+    student list <a routerLink="/students/add">Add</a>
+    <router-outlet></router-outlet>
+</ng-container>
+
+<ng-template #childContent>
+    <router-outlet></router-outlet>
+</ng-template>

@@ -1,0 +1,39 @@
+<nav>
+    <div class="row w-100">
+        <div class="col-6 d-flex justify-content-start align-items-center gap-3">
+            <div class="menu-button navbar-icon" (click)="onToggleSidebar()">
+                <i class="fa-solid fa-bars"></i>
+            </div>
+
+        </div>
+        <div class="col-6 d-flex justify-content-end align-items-center gap-3">
+            <button class="mobile-search-button navbar-icon d-md-none" (click)="toggleMobileSearch()"><i
+                    class="fa-solid fa-magnifying-glass"></i>
+            </button>
+            <form class="search-form" [ngClass]="isMobileSearchOpen ? 'opened' :''">
+                <i class="fa-solid fa-magnifying-glass before-icon navbar-icon"></i>
+                <input type="text" placeholder="{{'search' | translate}}...">
+                <button type="submit">
+                    <i class="fa-solid fa-magnifying-glass navbar-icon d-md-none"></i>
+                    <span>{{'search' | translate}}</span>
+                </button>
+            </form>
+            <div class="language-dropdown">
+                <div class="active-lang">
+                    <span>{{currentLang}}</span>
+                    <i class="fa-solid fa-chevron-down"></i>
+                </div>
+                <div class="lang-menu">
+                    <div (click)="onLanguageSelect('az')" class="lang-item">{{'az' | translate}}</div>
+                    <div (click)="onLanguageSelect('en')" class="lang-item">{{'en' | translate}}</div>
+                    <div (click)="onLanguageSelect('ru')" class="lang-item">{{'ru' | translate}}</div>
+                </div>
+            </div>
+            <button class="theme-button navbar-icon" (click)="onToggleTheme()">
+                <i *ngIf="currentTheme === 'light'" class="fa-solid fa-moon"></i>
+                <i *ngIf="currentTheme === 'dark'" class="fa-solid fa-sun"></i>
+            </button>
+
+        </div>
+    </div>
+</nav>

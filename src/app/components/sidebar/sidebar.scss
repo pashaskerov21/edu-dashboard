@@ -1,0 +1,125 @@
+@use '../../scss/mixin' as *;
+@use '../../scss/variables' as *;
+
+
+aside {
+    width: 100%;
+    min-width: 80px;
+    max-width: 80px;
+    height: 100vh;
+    overflow: hidden;
+    background-color: $bg-color-1;
+    padding: 25px;
+    transition: all 0.5s;
+    // box-shadow: 0 0 10px light-dark($black-1, $white-1);
+
+    .sidebar-hide-item {
+        display: none;
+        opacity: 0;
+        animation: sidebarItemsAnimation 1s ease 0.2s forwards;
+    }
+
+    .aside-header {
+        width: 100%;
+        @include row-center;
+
+        .logo {
+            @include row-start;
+            gap: 10px;
+
+            span {
+                color: $txt-color-2;
+                font-weight: 800;
+                text-transform: uppercase;
+                font-size: 16px;
+                margin-top: 4px;
+            }
+        }
+    }
+
+    .aside-body {
+        width: 100%;
+        padding: 30px 0;
+
+        .navigation {
+            width: 100%;
+            @include column-start;
+
+            &-title {
+                width: 100%;
+                margin: 15px 0;
+                color: $txt-color-2;
+                font-size: 14px;
+            }
+
+            &-links {
+                width: 100%;
+                @include column-start;
+                gap: 25px;
+
+                a {
+                    @include row-center;
+                    gap: 15px;
+                    color: $txt-color-1;
+
+                    &:hover {
+                        color: $txt-color-2;
+                    }
+
+                    i {
+                        @include row-center;
+                        width: 20px;
+                    }
+                }
+            }
+        }
+    }
+
+    &.opened {
+        position: fixed;
+        top: 0;
+        left: 0;
+        min-width: 260px;
+        max-width: 260px;
+        z-index: 999;
+
+        @media (min-width: 768px) {
+            position: relative;
+        }
+
+        .sidebar-hide-item {
+            display: block;
+        }
+    }
+
+    &.closed {
+        min-width: 80px;
+        max-width: 80px;
+
+        .sidebar-hide-item {
+            display: none;
+        }
+
+    }
+
+    @media (min-width: 768px) {
+        min-width: 260px;
+        max-width: 260px;
+
+        .sidebar-hide-item {
+            display: block;
+        }
+    }
+}
+
+@keyframes sidebarItemsAnimation {
+    0% {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+
+    100% {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}

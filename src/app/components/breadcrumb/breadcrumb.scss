@@ -1,0 +1,31 @@
+@use '../../scss/mixin' as *;
+@use '../../scss/variables' as *;
+
+
+.content-header{
+    width: 100%;
+    margin: 30px auto;
+    .content-title{
+        color: light-dark($txt-color-3,$txt-color-2);
+    }
+    .breadcrumbs{
+        @include row-justify-end;
+        flex-wrap: wrap;
+        gap: 10px;
+        a{
+            font-size: 14px;
+            color: $primary-color;
+            &:last-child{
+                color: light-dark($txt-color-3, $txt-color-1);
+            }
+        }
+        span{
+            font-size: 14px;
+            color: light-dark($txt-color-3, $txt-color-1);
+        }
+        i{
+            color: light-dark($txt-color-3, $txt-color-1);
+            font-size: 10px;
+        }
+    }
+}

@@ -1,1 +1,247 @@
-/* You can add global styles to this file, and also import other style files */
+@use 'app/scss/mixin' as *;
+@use 'app/scss/variables' as *;
+
+
+:root.light {
+    color-scheme: light;
+}
+
+:root.dark {
+    color-scheme: dark;
+}
+
+
+/*=============GLOBAL=================*/
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    width: 100%;
+}
+
+body {
+    width: 100%;
+    min-height: 100vh;
+    font-size: 16px;
+    font-family: $primary-font;
+    scroll-behavior: smooth;
+}
+
+::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+}
+
+// ::-webkit-scrollbar-thumb {
+//     background-color: light-dark($bg-color-3,$bg-color-1);
+// }
+
+// ::-webkit-scrollbar-track {
+//     background-color: light-dark($bg-color-3,$bg-color-1);
+// }
+
+// ::selection {
+//     background: $secondary-color;
+//     color: #ffffff;
+// }
+
+a,
+a:hover,
+a:active,
+a:visited {
+    text-decoration: none;
+}
+
+a * {
+    text-decoration: none;
+}
+
+p {
+    margin: 0;
+    background-color: transparent;
+}
+
+ul {
+    margin: 0;
+    padding: 0;
+    padding-left: 30px;
+}
+
+img {
+    user-select: none;
+    display: block;
+}
+
+svg {
+    display: block;
+}
+
+button {
+    border: none;
+    outline: none;
+    background-color: transparent;
+    padding: 0;
+    margin: 0;
+    transition: all 0.3s;
+    cursor: pointer;
+}
+
+a {
+    transition: all 0.3s;
+    cursor: pointer;
+}
+
+input {
+    outline: none;
+    font-family: var(--general-font);
+
+    &::-webkit-inner-spin-button,
+    &::-webkit-outer-spin-button {
+        display: none;
+    }
+}
+
+main {
+    width: 100%;
+
+    &.primary-bg {
+        background-color: #F5F5F7;
+    }
+}
+
+section {
+    width: 100%;
+    position: relative;
+}
+
+
+.app-wrapper {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    overflow: hidden;
+
+    .right-wrapper {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        height: 100vh;
+
+        .content-wrapper {
+            flex: 1;
+            overflow: auto;
+            background-color: light-dark($bg-color-4, $bg-color-2);
+            padding: 0 20px;
+            @media (min-width: 992px){
+                padding: 0 40px;
+            }
+        }
+    }
+}
+
+.black-backdrop {
+    width: 100%;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 990;
+    background-color: $black-7;
+
+    // filter: blur(10px);
+    @media (min-width: 768px) {
+        display: none;
+    }
+}
+
+
+.table-wrapper {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: auto;
+
+    table {
+        // display: block;
+        min-width: 1000px;
+    }
+
+    thead {
+        tr * {
+            background-color: light-dark($bg-color-4, $bg-color-2);
+            color: light-dark($txt-color-3, $txt-color-1);
+        }
+    }
+
+    tbody {
+        tr:nth-child(odd) * {
+            background-color: light-dark(#F6F7FB, #3D4854);
+            color: light-dark($txt-color-3, $txt-color-1);
+        }
+
+        tr * {
+            background-color: light-dark($bg-color-4, $bg-color-2);
+            color: light-dark($txt-color-3, $txt-color-1);
+            border: none;
+        }
+    }
+
+    th,
+    td {
+        background-color: light-dark($bg-color-4, $bg-color-2);
+        border: none;
+    }
+}
+
+.main-operations{
+    width: 100%;
+    padding: 20px;
+    @include row-justify-start;
+    flex-wrap: wrap;
+    gap: 15px;
+    background-color: light-dark($bg-color-3,$bg-color-1);
+    margin-bottom: 30px;
+    border-radius: 5px;
+    .add-button{
+        background-color: #FA5C7C;
+        color: #fff;
+        padding: 10px 20px;
+        border-radius: 5px;
+        @include row-center;
+        gap: 10px;
+    }
+    .delete-all, .delete-select{
+        background-color: #727CF5;
+        color: #fff;
+        padding: 10px 20px;
+        border-radius: 5px;
+        &.active{
+            background-color: #0ACF97;
+        }
+    }
+}
+.operations{
+    @include row-justify-start;
+    gap: 25px;
+    .edit-btn{
+        &:hover i{
+            color: #0ACF97 !important;
+        }
+    }
+    .delete-btn{
+        &:hover i{
+            color: #FA5C7C !important;
+        }
+    }
+    .check-btn{
+        &:hover i{
+            color: #727CF5 !important;
+        }
+        &.active i{
+            color: #0ACF97 !important;
+        }
+    }
+
+}
