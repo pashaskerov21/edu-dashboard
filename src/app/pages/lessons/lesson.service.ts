@@ -1,12 +1,8 @@
 import { Injectable, signal } from "@angular/core";
 import { Lesson } from "./lesson.model";
-import Swal from "sweetalert2";
-import { TranslateService } from "@ngx-translate/core";
 
 @Injectable({ providedIn: 'root' })
 export class LessonService {
-
-    constructor(private translate: TranslateService) { }
 
     private lessonsSignal = signal<Lesson[]>([
         {

@@ -7,6 +7,7 @@ import { Deleted } from './pages/deleted/deleted';
 import { AddLesson } from './pages/lessons/add-lesson/add-lesson';
 import { ListLesson } from './pages/lessons/list-lesson/list-lesson';
 import { EditLesson } from './pages/lessons/edit-lesson/edit-lesson';
+import { LessonService } from './pages/lessons/lesson.service';
 
 export const routes: Routes = [
   {
