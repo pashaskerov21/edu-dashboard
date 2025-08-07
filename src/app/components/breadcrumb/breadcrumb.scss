@@ -13,15 +13,21 @@
         flex-wrap: wrap;
         gap: 10px;
         a{
-            font-size: 14px;
+            font-size: 12px;
             color: $primary-color;
             &:last-child{
                 color: light-dark($txt-color-3, $txt-color-1);
             }
+            @media (min-width: 768px){
+                font-size: 14px;
+            }
         }
         span{
-            font-size: 14px;
+            font-size: 12px;
             color: light-dark($txt-color-3, $txt-color-1);
+            @media (min-width: 768px){
+                font-size: 14px;
+            }
         }
         i{
             color: light-dark($txt-color-3, $txt-color-1);

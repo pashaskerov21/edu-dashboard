@@ -1,12 +1,17 @@
 import { Injectable, signal } from "@angular/core";
 import { Lesson } from "./lesson.model";
+import Swal from "sweetalert2";
+import { TranslateService } from "@ngx-translate/core";
 
 @Injectable({ providedIn: 'root' })
 export class LessonService {
+
+    constructor(private translate: TranslateService) { }
+
     private lessonsSignal = signal<Lesson[]>([
         {
             id: 1,
-            slug: 'mathematics-10',
+            slug: 'riyaziyyat-10',
             code: 'MAT',
             name: 'Riyaziyyat',
             class: 10,
@@ -15,7 +20,7 @@ export class LessonService {
         },
         {
             id: 2,
-            slug: 'physics-11',
+            slug: 'fizika-11',
             code: 'FIZ',
             name: 'Fizika',
             class: 11,
@@ -24,7 +29,7 @@ export class LessonService {
         },
         {
             id: 3,
-            slug: 'chemistry-9',
+            slug: 'kimya-9',
             code: 'KMY',
             name: 'Kimya',
             class: 9,
@@ -33,7 +38,7 @@ export class LessonService {
         },
         {
             id: 4,
-            slug: 'biology-8',
+            slug: 'biologiya-8',
             code: 'BIO',
             name: 'Biologiya',
             class: 8,
@@ -42,7 +47,7 @@ export class LessonService {
         },
         {
             id: 5,
-            slug: 'history-7',
+            slug: 'tarix-7',
             code: 'TAR',
             name: 'Tarix',
             class: 7,
@@ -54,7 +59,31 @@ export class LessonService {
 
     lessons = this.lessonsSignal.asReadonly();
 
+    getLessons(): Lesson[] {
+        return this.lessonsSignal();
+    }
+
     deleteLesson(id: number) {
         this.lessonsSignal.update(lessons => lessons.filter(lesson => lesson.id !== id));
+    }
+
+    addLesson(newLesson: Lesson) {
+
+
+        this.lessonsSignal.update(lessons => [
+            ...lessons,
+            {
+                ...newLesson,
+            }
+        ])
+    }
+    updateLesson(id: number, slug: string, updated: Omit<Lesson, 'id' | 'slug'>) {
+        this.lessonsSignal.update(lessons =>
+            lessons.map(lesson =>
+                lesson.id === id
+                    ? { ...lesson, ...updated, slug: slug }
+                    : lesson
+            )
+        );
     }
 }

@@ -4,12 +4,9 @@ import { Lessons } from './pages/lessons/lessons';
 import { Students } from './pages/students/students';
 import { Exams } from './pages/exams/exams';
 import { Deleted } from './pages/deleted/deleted';
-import { AddLesson } from './pages/lessons/add/add';
-import { AddStudent } from './pages/students/add/add';
-import { AddExam } from './pages/exams/add/add';
-import { LessonList } from './pages/lessons/list/list';
-import { StudentList } from './pages/students/list/list';
-import { ExamList } from './pages/exams/list/list';
+import { AddLesson } from './pages/lessons/add-lesson/add-lesson';
+import { ListLesson } from './pages/lessons/list-lesson/list-lesson';
+import { EditLesson } from './pages/lessons/edit-lesson/edit-lesson';
 
 export const routes: Routes = [
   {
@@ -24,13 +21,18 @@ export const routes: Routes = [
     children: [
       {
         path: '',
-        component: LessonList,
+        component: ListLesson,
         data: { breadcrumb: 'all' },
       },
       {
         path: 'add',
         component: AddLesson,
         data: { breadcrumb: 'add-lesson' },
+      },
+      {
+        path: ':slug',
+        component: EditLesson,
+        data: { breadcrumb: 'edit' },
       }
     ]
   },
@@ -38,35 +40,35 @@ export const routes: Routes = [
     path: 'students',
     component: Students,
     data: { breadcrumb: 'students' },
-    children: [
-      {
-        path: '',
-        component: StudentList,
-        data: { breadcrumb: 'all' },
-      },
-      {
-        path: 'add',
-        component: AddStudent,
-        data: { breadcrumb: 'add-student' },
-      },
-    ]
+    // children: [
+    //   {
+    //     path: '',
+    //     component: StudentList,
+    //     data: { breadcrumb: 'all' },
+    //   },
+    //   {
+    //     path: 'add',
+    //     component: AddStudent,
+    //     data: { breadcrumb: 'add-student' },
+    //   },
+    // ]
   },
   {
     path: 'exams',
     component: Exams,
     data: { breadcrumb: 'exams' },
-    children: [
-      {
-        path: '',
-        component: ExamList,
-        data: { breadcrumb: 'all' },
-      },
-      {
-        path: 'add',
-        component: AddExam,
-        data: { breadcrumb: 'add-exam' },
-      }
-    ]
+    // children: [
+    //   {
+    //     path: '',
+    //     component: ExamList,
+    //     data: { breadcrumb: 'all' },
+    //   },
+    //   {
+    //     path: 'add',
+    //     component: AddExam,
+    //     data: { breadcrumb: 'add-exam' },
+    //   }
+    // ]
   },
   {
     path: 'deleted',

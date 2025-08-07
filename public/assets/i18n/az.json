@@ -10,6 +10,7 @@
     "exams": "İmtahanlar",
     "deleted": "Silinənlər",
     "add": "Əlavə et",
+    "edit": "Düzəliş et",
     "add-lesson": "Dərs əlavə et",
     "add-student": "Şagird əlavə et",
     "add-exam": "İmtahan əlavə et",
@@ -28,5 +29,10 @@
     "congrulations": "Təbriklər",
     "delete-success-message": "Uğurla silindi",
     "select-all": "Hamısını seç",
-    "delete-selected": "Seçilmişləri sil"
+    "delete-selected": "Seçilmişləri sil",
+    "duplicate-message": "Daxil etdiyiniz məlumatlar mövcuddur. Yenidən daxil edin",
+    "save": "Yadda saxla",
+    "invalid-input-message": "Düzgün məlumat daxil edin",
+    "save-message": "Məlumatlar uğurla yadda saxlanıldı",
+    "min-2-simvol": "Minimum 2 simvol"
 }

@@ -1,16 +1,17 @@
-import { Component } from '@angular/core';
-import { LessonService } from '../lesson.service';
 import { NgClass, NgFor, NgIf } from '@angular/common';
+import { Component } from '@angular/core';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import Swal from 'sweetalert2';
+import { LessonService } from '../lesson.service';
+import { RouterLink, RouterModule } from '@angular/router';
 
 @Component({
-  selector: 'app-list',
-  imports: [NgClass, NgFor, NgIf, TranslateModule],
-  templateUrl: './list.html',
-  styleUrl: './list.scss'
+  selector: 'app-list-lesson',
+  imports: [NgClass, NgFor, NgIf, TranslateModule, RouterLink],
+  templateUrl: './list-lesson.html',
+  styleUrl: './list-lesson.scss'
 })
-export class LessonList {
+export class ListLesson {
   constructor(public lessonService: LessonService, private translate: TranslateService) { }
 
   selectedRowIDs: number[] = [];
@@ -37,7 +38,7 @@ export class LessonList {
     }
   }
 
-   deleteSelected() {
+  deleteSelected() {
 
     Swal.fire({
       title: this.translate.instant('attention'),

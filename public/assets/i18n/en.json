@@ -3,13 +3,14 @@
     "az": "Azerbaijan",
     "en": "English",
     "ru": "Russian",
-    "search": "Поиск",
+    "search": "Search",
     "navigation": "Navigation",
     "lessons": "Lessons",
     "students": "Students",
     "exams": "Exams",
     "deleted": "Deleted",
     "add": "Add",
+    "edit": "Edit",
     "add-lesson": "Add lesson",
     "add-student": "Add student",
     "add-exam": "Add exam",
@@ -28,5 +29,10 @@
     "congrulations": "Congratulations",
     "delete-success-message": "Successfully deleted",
     "select-all": "Select all",
-    "delete-selected": "Delete selected"
+    "delete-selected": "Delete selected",
+    "duplicate-message": "The information you entered is available. Please enter it again.",
+    "save": "Save",
+    "invalid-input-message": "Please enter correct information.",
+    "save-message": "Data saved successfully",
+    "min-2-simvol": "Minimum 2 characters"
 }

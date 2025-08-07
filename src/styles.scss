@@ -28,6 +28,7 @@ body {
     font-size: 16px;
     font-family: $primary-font;
     scroll-behavior: smooth;
+    background-color: light-dark($bg-color-4, $bg-color-2);
 }
 
 ::-webkit-scrollbar {
@@ -127,15 +128,17 @@ section {
     .right-wrapper {
         display: flex;
         flex-direction: column;
-        width: 100%;
+        width: calc(100% - 80px);
         height: 100vh;
+        // overflow-y: auto;
 
         .content-wrapper {
             flex: 1;
-            overflow: hidden;
+            overflow: auto;
             background-color: light-dark($bg-color-4, $bg-color-2);
             padding: 0 20px;
-            @media (min-width: 992px){
+
+            @media (min-width: 992px) {
                 padding: 0 40px;
             }
         }
@@ -162,13 +165,13 @@ section {
     width: 100%;
     max-width: 100%;
     overflow-x: auto;
-    
+
     @include row-start;
 
     table {
         width: 100%;
         min-width: 1000px;
-        
+
     }
 
     thead {
@@ -189,7 +192,8 @@ section {
             color: light-dark($txt-color-3, $txt-color-1);
             border: none;
         }
-        tr div{
+
+        tr div {
             background-color: transparent !important;
         }
     }
@@ -201,53 +205,133 @@ section {
     }
 }
 
-.main-operations{
+.main-operations {
     width: 100%;
     padding: 20px;
     @include row-justify-start;
     flex-wrap: wrap;
     gap: 15px;
-    background-color: light-dark($bg-color-3,$bg-color-1);
+    background-color: light-dark($bg-color-3, $bg-color-1);
     margin-bottom: 30px;
     border-radius: 5px;
-    .add-button{
+
+    .add-button {
         background-color: #FA5C7C;
         color: #fff;
         padding: 10px 20px;
         border-radius: 5px;
         @include row-center;
         gap: 10px;
+        font-size: 12px;
+
+        @media (min-width: 768px) {
+            font-size: 14px;
+        }
+
+        @media (min-width: 992px) {
+            font-size: 16px;
+        }
     }
-    .delete-all, .delete-select{
+
+    .delete-all,
+    .delete-select {
         background-color: #727CF5;
         color: #fff;
         padding: 10px 20px;
         border-radius: 5px;
-        &.active{
+        font-size: 12px;
+
+        &.active {
             background-color: #0ACF97;
+        }
+
+        @media (min-width: 768px) {
+            font-size: 14px;
+        }
+
+        @media (min-width: 992px) {
+            font-size: 16px;
         }
     }
 }
-.operations{
+
+.operations {
     @include row-justify-start;
     gap: 25px;
-    .edit-btn{
-        &:hover i{
-            color: #0ACF97 !important;
-        }
-    }
-    .delete-btn{
-        &:hover i{
-            color: #FA5C7C !important;
-        }
-    }
-    .check-btn{
-        &:hover i{
-            color: #727CF5 !important;
-        }
-        &.active i{
+
+    .edit-btn {
+        &:hover i {
             color: #0ACF97 !important;
         }
     }
 
+    .delete-btn {
+        &:hover i {
+            color: #FA5C7C !important;
+        }
+    }
+
+    .check-btn {
+        &:hover i {
+            color: #727CF5 !important;
+        }
+
+        &.active i {
+            color: #0ACF97 !important;
+        }
+    }
+
+}
+
+
+
+form.general-form {
+    background-color: light-dark(#ffffff, $bg-color-1);
+    padding: 20px 15px;
+
+    @media (min-width: 768px) {
+        padding: 30px;
+    }
+
+    .form-item {
+        @include column-align-start;
+        gap: 10px;
+
+        label {
+            color: light-dark($txt-color-3, $txt-color-2);
+        }
+
+        input {
+            width: 100%;
+            outline: none;
+            padding: 6px 12px;
+            border-radius: 5px;
+            background-color: light-dark(#ffffff, #404954);
+            border: 1px solid light-dark(#e5e8eb, #464f5b);
+            color: light-dark($txt-color-3, $txt-color-2);
+
+            &::placeholder {
+                color: light-dark($txt-color-3, $txt-color-2);
+            }
+
+            &.is-invalid {
+                border: 1px solid #FA5C7C;
+            }
+        }
+    }
+
+    button {
+        &.submit-btn {
+            background-color: #727CF5;
+            color: #fff;
+            padding: 10px 20px;
+            border-radius: 5px;
+        }
+    }
+
+    .invalid-feedback {
+        color: #FA5C7C;
+        font-size: 14px;
+        margin-top: 3px;
+    }
 }
