@@ -4,4 +4,5 @@ export interface Student{
     firstname: string,
     lastname: string,
     class: number,
+    delete: 0 | 1,
 }

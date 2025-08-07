@@ -58,7 +58,8 @@ export class AddLesson {
       class: this.classNumber!,
       teacherFirstName: this.teacherFirstName.trim(),
       teacherLastName: this.teacherLastName.trim(),
-      slug: slug
+      slug: slug,
+      delete: 0
     };
 
     this.lessonService.addLesson(newLesson);

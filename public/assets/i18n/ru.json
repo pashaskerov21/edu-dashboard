@@ -37,5 +37,11 @@
     "min-2-simvol": "Минимум 2 символа",
     "student-fullname": "Имя и фамилия студента",
     "student-firstname": "Имя студента",
-    "student-lastname": "Фамилия студента"
+    "student-lastname": "Фамилия студента",
+    "invalid-select-message": "Пожалуйста, выберите",
+    "date": "Дата",
+    "score": "Счет",
+    "no-lesson": "Нет урока",
+    "no-student": "Нет студента",
+    "select": "Выбирать"
 }

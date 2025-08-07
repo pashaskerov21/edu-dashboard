@@ -7,10 +7,12 @@ import { Deleted } from './pages/deleted/deleted';
 import { AddLesson } from './pages/lessons/add-lesson/add-lesson';
 import { ListLesson } from './pages/lessons/list-lesson/list-lesson';
 import { EditLesson } from './pages/lessons/edit-lesson/edit-lesson';
-import { LessonService } from './pages/lessons/lesson.service';
 import { ListStudent } from './pages/students/list-student/list-student';
 import { AddStudent } from './pages/students/add-student/add-student';
 import { EditStudent } from './pages/students/edit-student/edit-student';
+import { AddExam } from './pages/exams/add-exam/add-exam';
+import { EditExam } from './pages/exams/edit-exam/edit-exam';
+import { ListExam } from './pages/exams/list-exam/list-exam';
 
 export const routes: Routes = [
   {
@@ -66,18 +68,23 @@ export const routes: Routes = [
     path: 'exams',
     component: Exams,
     data: { breadcrumb: 'exams' },
-    // children: [
-    //   {
-    //     path: '',
-    //     component: ExamList,
-    //     data: { breadcrumb: 'all' },
-    //   },
-    //   {
-    //     path: 'add',
-    //     component: AddExam,
-    //     data: { breadcrumb: 'add-exam' },
-    //   }
-    // ]
+    children: [
+      {
+        path: '',
+        component: ListExam,
+        data: { breadcrumb: 'all' },
+      },
+      {
+        path: 'add',
+        component: AddExam,
+        data: { breadcrumb: 'add-exam' },
+      },
+      {
+        path: ':slug',
+        component: EditExam,
+        data: { breadcrumb: 'edit' },
+      }
+    ]
   },
   {
     path: 'deleted',

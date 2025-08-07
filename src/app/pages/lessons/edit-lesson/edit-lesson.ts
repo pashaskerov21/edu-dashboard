@@ -58,16 +58,16 @@ export class EditLesson {
     if (!isValid) return;
 
 
-    const updatedLesson: Omit<Lesson, 'id' | 'slug'> = {
+    const updatedLesson: Omit<Lesson, 'id' | 'slug' | 'delete'> = {
       name: this.name.trim(),
       code: this.code.trim(),
       class: this.classNumber,
       teacherFirstName: this.teacherFirstName.trim(),
-      teacherLastName: this.teacherLastName.trim()
+      teacherLastName: this.teacherLastName.trim(),
     };
 
     const newSlug = `${updatedLesson.name.toLowerCase().replace(/\s+/g, '-')}-${updatedLesson.class}`;
-    const existing = this.lessonService.lessons().find(l =>
+    const existing = this.lessonService.getLessons().find(l =>
       (l.slug === newSlug || (l.code === updatedLesson.code && l.class === updatedLesson.class)) &&
       l.id !== this.lesson.id
     );

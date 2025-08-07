@@ -9,7 +9,7 @@ import { NgClass, NgIf } from '@angular/common';
 
 @Component({
   selector: 'app-add-student',
-  imports: [TranslateModule, FormsModule, NgClass, NgIf],
+  imports: [NgIf, TranslateModule, FormsModule, NgClass],
   templateUrl: './add-student.html',
   styleUrl: './add-student.scss'
 })
@@ -30,7 +30,7 @@ export class AddStudent {
     if (!isValid) return;
 
     const currentStudents = this.studentService.getStudents();
-  
+
     const lastId = currentStudents.length > 0 ? currentStudents[currentStudents.length - 1].id : 0;
     const newId = lastId + 1;
     const slug = `${this.firstname.toLocaleLowerCase().trim().replace(/\s+/g, '-')}-${this.lastname.toLocaleLowerCase().trim().replace(/\s+/g, '-')}-${newId}`;
@@ -41,6 +41,7 @@ export class AddStudent {
       firstname: this.firstname.trim(),
       lastname: this.lastname.trim(),
       class: this.class!,
+      delete: 0,
     }
 
     this.studentService.addStudent(newStudent);

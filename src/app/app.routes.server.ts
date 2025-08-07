@@ -1,6 +1,7 @@
 import { RenderMode, ServerRoute } from '@angular/ssr';
 import { LessonService } from './pages/lessons/lesson.service';
 import { StudentService } from './pages/students/student.service';
+import { ExamService } from './pages/exams/exam.service';
 
 export const serverRoutes: ServerRoute[] = [
   {
@@ -21,6 +22,16 @@ export const serverRoutes: ServerRoute[] = [
       const students = studentService.getStudents();
 
       return students.map(student => ({ slug: student.slug }));
+    }
+  },
+  {
+    path: 'exams/:slug',
+    renderMode: RenderMode.Prerender,
+    getPrerenderParams: async () => {
+      const examService = new ExamService();
+      const exams = examService.getExams();
+
+      return exams.map(exam => ({ slug: exam.slug }));
     }
   },
   {

@@ -37,5 +37,11 @@
     "min-2-simvol": "Minimum 2 characters",
     "student-fullname": "Student's name and surname",
     "student-firstname": "Student's name",
-    "student-lastname": "Student's last name"
+    "student-lastname": "Student's last name",
+    "invalid-select-message": "Please select",
+    "date": "Date",
+    "score": "Score",
+    "no-lesson": "No lesson",
+    "no-student": "No student",
+    "select": "Select"
 }

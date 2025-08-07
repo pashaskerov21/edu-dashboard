@@ -6,4 +6,5 @@ export interface Lesson{
     class: number,
     teacherFirstName: string;
     teacherLastName: string,
+    delete: 0 | 1;
 }

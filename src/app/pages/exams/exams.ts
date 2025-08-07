@@ -5,7 +5,7 @@ import { filter } from 'rxjs';
 
 @Component({
   selector: 'app-exams',
-  imports: [RouterLink, RouterOutlet, NgIf],
+  imports: [NgIf, RouterOutlet],
   templateUrl: './exams.html',
   styleUrl: './exams.scss'
 })

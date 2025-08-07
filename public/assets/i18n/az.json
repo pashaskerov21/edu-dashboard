@@ -37,5 +37,11 @@
     "min-2-simvol": "Minimum 2 simvol",
     "student-fullname": "Şagirdin adı və soyadı",
     "student-firstname": "Şagirdin adı",
-    "student-lastname": "Şagirdin soyadı"
+    "student-lastname": "Şagirdin soyadı",
+    "invalid-select-message": "Zəhmət olmasa seçin",
+    "date": "Tarix",
+    "score": "Qiymət",
+    "no-lesson": "Dərs yoxdur",
+    "no-student": "Şagird yoxdur",
+    "select": "Seçin"
 }

@@ -7,7 +7,7 @@ import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-list-student',
-  imports: [NgClass, NgFor, NgIf, TranslateModule, RouterLink],
+  imports: [NgIf, NgFor, NgClass, TranslateModule, RouterLink],
   templateUrl: './list-student.html',
   styleUrl: './list-student.scss'
 })
@@ -30,10 +30,10 @@ export class ListStudent {
   selectAll() {
     const allIds = this.studentService.getStudents().map(student => student.id);
     if (this.selectedRowIDs.length === allIds.length) {
-      
+
       this.selectedRowIDs = [];
     } else {
-      
+
       this.selectedRowIDs = allIds;
     }
   }
@@ -51,8 +51,13 @@ export class ListStudent {
       cancelButtonColor: '#3085d6'
     }).then((result) => {
       if (result.isConfirmed) {
-        this.selectedRowIDs.forEach(id => this.studentService.deleteStudent(id));
-        this.selectedRowIDs = []; 
+        this.selectedRowIDs.forEach(id => {
+          const student = this.studentService.getStudents().find(l => l.id === id);
+          if(student){
+            this.studentService.updateDeleteValue(id)
+          }
+        })
+        this.selectedRowIDs = [];
         Swal.fire(
           this.translate.instant('congrulations'),
           this.translate.instant('delete-success-message'),

@@ -1,5 +1,6 @@
-import { Injectable, signal } from "@angular/core";
+import { inject, Injectable, signal } from "@angular/core";
 import { Lesson } from "./lesson.model";
+import { ExamService } from "../exams/exam.service";
 
 @Injectable({ providedIn: 'root' })
 export class LessonService {
@@ -12,7 +13,8 @@ export class LessonService {
             name: 'Riyaziyyat',
             class: 10,
             teacherFirstName: 'Aqil',
-            teacherLastName: 'Əliyev'
+            teacherLastName: 'Əliyev',
+            delete: 0,
         },
         {
             id: 2,
@@ -21,7 +23,8 @@ export class LessonService {
             name: 'Fizika',
             class: 11,
             teacherFirstName: 'Leyla',
-            teacherLastName: 'Hüseynova'
+            teacherLastName: 'Hüseynova',
+            delete: 0,
         },
         {
             id: 3,
@@ -30,7 +33,8 @@ export class LessonService {
             name: 'Kimya',
             class: 9,
             teacherFirstName: 'Kamran',
-            teacherLastName: 'Quliyev'
+            teacherLastName: 'Quliyev',
+            delete: 0,
         },
         {
             id: 4,
@@ -39,7 +43,8 @@ export class LessonService {
             name: 'Biologiya',
             class: 8,
             teacherFirstName: 'Sevda',
-            teacherLastName: 'Məmmədova'
+            teacherLastName: 'Məmmədova',
+            delete: 0,
         },
         {
             id: 5,
@@ -48,19 +53,32 @@ export class LessonService {
             name: 'Tarix',
             class: 7,
             teacherFirstName: 'Ramin',
-            teacherLastName: 'Əhmədov'
+            teacherLastName: 'Əhmədov',
+            delete: 0,
         }
     ]);
 
 
-    lessons = this.lessonsSignal.asReadonly();
+    private examService = inject(ExamService);
 
     getLessons(): Lesson[] {
-        return this.lessonsSignal();
+        return this.lessonsSignal().filter(lesson => lesson.delete === 0);
+    }
+    getDeletedLessons(): Lesson[] {
+        return this.lessonsSignal().filter(lesson => lesson.delete === 1);
     }
 
     deleteLesson(id: number) {
-        this.lessonsSignal.update(lessons => lessons.filter(lesson => lesson.id !== id));
+        const deletedLesson = this.getLessons().find(lesson => lesson.id === id);
+        if (deletedLesson) {
+            this.lessonsSignal.update(lessons =>
+                lessons.map(lesson =>
+                    lesson.id === id ? { ...lesson, delete: 1 } : lesson
+                )
+            );
+
+            this.examService.deleteExamsByLessonCode(deletedLesson.code);
+        }
     }
 
     addLesson(newLesson: Lesson) {
@@ -71,7 +89,7 @@ export class LessonService {
             }
         ])
     }
-    updateLesson(id: number, slug: string, updated: Omit<Lesson, 'id' | 'slug'>) {
+    updateLesson(id: number, slug: string, updated: Omit<Lesson, 'id' | 'slug' | 'delete'>) {
         this.lessonsSignal.update(lessons =>
             lessons.map(lesson =>
                 lesson.id === id
@@ -79,5 +97,17 @@ export class LessonService {
                     : lesson
             )
         );
+    }
+    updateDeleteValue(id: number) {
+        const deletedLesson = this.getLessons().find(lesson => lesson.id === id);
+        if (deletedLesson) {
+            this.lessonsSignal.update(lessons =>
+                lessons.map(lesson =>
+                    lesson.id === id ? { ...lesson, delete: 1 } : lesson
+                )
+            );
+
+            this.examService.deleteExamsByLessonCode(deletedLesson.code);
+        }
     }
 }

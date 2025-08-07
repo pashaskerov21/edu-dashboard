@@ -1,6 +1,6 @@
 <div class="main-operations">
     <a class="add-button" routerLink="/lessons/add">{{'add-lesson' | translate}} <i class="fa-solid fa-circle-plus"></i></a>
-    <button class="delete-all" [ngClass]="lessonService.lessons().length === selectedRowIDs.length ? 'active' : ''" *ngIf="lessonService.lessons().length > 0" (click)="selectAll()">
+    <button class="delete-all" [ngClass]="lessonService.getLessons().length === selectedRowIDs.length ? 'active' : ''" *ngIf="lessonService.getLessons().length > 0" (click)="selectAll()">
         {{"select-all" | translate}}
     </button>
     <button class="delete-select" *ngIf="selectedRowIDs.length > 0" (click)="deleteSelected()">
@@ -20,7 +20,7 @@
             </tr>
         </thead>
         <tbody>
-            <tr *ngFor="let lesson of lessonService.lessons();let i = index">
+            <tr *ngFor="let lesson of lessonService.getLessons();let i = index">
                 <td>{{i+1}}</td>
                 <td>{{lesson.name}}</td>
                 <td>{{lesson.code}}</td>
@@ -37,3 +37,4 @@
         </tbody>
     </table>
 </div>
+

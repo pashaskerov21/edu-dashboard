@@ -5,7 +5,7 @@ import { filter } from 'rxjs';
 
 @Component({
   selector: 'app-students',
-  imports: [RouterOutlet, NgIf],
+  imports: [NgIf,RouterOutlet],
   templateUrl: './students.html',
   styleUrl: './students.scss'
 })
