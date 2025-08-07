@@ -1,11 +1,11 @@
 import { NgIf } from '@angular/common';
 import { Component } from '@angular/core';
-import { ActivatedRoute, NavigationEnd, Router, RouterLink, RouterOutlet } from '@angular/router';
+import { ActivatedRoute, NavigationEnd, Router, RouterOutlet } from '@angular/router';
 import { filter } from 'rxjs';
 
 @Component({
   selector: 'app-students',
-  imports: [RouterLink, RouterOutlet, NgIf],
+  imports: [RouterOutlet, NgIf],
   templateUrl: './students.html',
   styleUrl: './students.scss'
 })

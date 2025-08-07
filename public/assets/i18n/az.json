@@ -34,5 +34,8 @@
     "save": "Yadda saxla",
     "invalid-input-message": "Düzgün məlumat daxil edin",
     "save-message": "Məlumatlar uğurla yadda saxlanıldı",
-    "min-2-simvol": "Minimum 2 simvol"
+    "min-2-simvol": "Minimum 2 simvol",
+    "student-fullname": "Şagirdin adı və soyadı",
+    "student-firstname": "Şagirdin adı",
+    "student-lastname": "Şagirdin soyadı"
 }

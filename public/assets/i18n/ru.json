@@ -34,5 +34,8 @@
     "save": "Сохранять",
     "invalid-input-message": "Пожалуйста, введите правильную информацию.",
     "save-message": "Данные успешно сохранены",
-    "min-2-simvol": "Минимум 2 символа"
+    "min-2-simvol": "Минимум 2 символа",
+    "student-fullname": "Имя и фамилия студента",
+    "student-firstname": "Имя студента",
+    "student-lastname": "Фамилия студента"
 }

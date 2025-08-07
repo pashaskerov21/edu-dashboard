@@ -53,7 +53,7 @@ export class EditLesson {
     event.preventDefault();
     this.submitted = true;
 
-    const isValid = this.name.trim().length >= 2 && this.code.trim().length >= 2 && !!this.classNumber && this.teacherFirstName.trim().length >= 2 && this.teacherLastName.trim().length >= 2;
+    const isValid = this.name.trim().length >= 2 && this.code.trim().length >= 2 && !!this.classNumber && this.classNumber > 1 && this.classNumber < 99 && this.teacherFirstName.trim().length >= 2 && this.teacherLastName.trim().length >= 2;
 
     if (!isValid) return;
 

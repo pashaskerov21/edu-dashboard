@@ -64,8 +64,6 @@ export class LessonService {
     }
 
     addLesson(newLesson: Lesson) {
-
-
         this.lessonsSignal.update(lessons => [
             ...lessons,
             {

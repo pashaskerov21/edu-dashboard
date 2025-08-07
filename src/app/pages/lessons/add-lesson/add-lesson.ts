@@ -28,17 +28,14 @@ export class AddLesson {
     event.preventDefault();
     this.submitted = true;
 
-    const isValid = this.name.trim().length >= 2 && this.code.trim().length >= 2 && !!this.classNumber && this.teacherFirstName.trim().length >= 2 && this.teacherLastName.trim().length >= 2;
+    const isValid = this.name.trim().length >= 2 && this.code.trim().length >= 2 && !!this.classNumber && this.classNumber > 1 && this.classNumber < 99 && this.teacherFirstName.trim().length >= 2 && this.teacherLastName.trim().length >= 2;
 
     if (!isValid) return;
 
     const currentLessons = this.lessonService.getLessons();
     const isDuplicate = currentLessons.some(lesson =>
-      lesson.class === this.classNumber &&
-      (
-        lesson.name.toLowerCase().trim() === this.name.toLowerCase().trim() ||
-        lesson.code.toLowerCase().trim() === this.code.toLowerCase().trim()
-      )
+      lesson.code.toLocaleLowerCase().trim() === this.code.toLocaleLowerCase().trim() ||
+      (lesson.name.toLocaleLowerCase().trim() === this.name.toLocaleLowerCase().trim() && lesson.class === this.classNumber)
     );
 
     if (isDuplicate) {
@@ -52,7 +49,7 @@ export class AddLesson {
 
     const lastId = currentLessons.length > 0 ? currentLessons[currentLessons.length - 1].id : 0;
     const newId = lastId + 1;
-    const slug = `${this.name.trim().toLowerCase().replace(/\s+/g, '-')}-${this.classNumber}`;
+    const slug = `${this.name.trim().toLocaleLowerCase().replace(/\s+/g, '-')}-${this.classNumber}`;
 
     const newLesson: Lesson = {
       id: newId,

@@ -1,18 +1,18 @@
 import { NgClass, NgFor, NgIf } from '@angular/common';
 import { Component } from '@angular/core';
+import { RouterLink } from '@angular/router';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
+import { StudentService } from '../student.service';
 import Swal from 'sweetalert2';
-import { LessonService } from '../lesson.service';
-import { RouterLink, RouterModule } from '@angular/router';
 
 @Component({
-  selector: 'app-list-lesson',
+  selector: 'app-list-student',
   imports: [NgClass, NgFor, NgIf, TranslateModule, RouterLink],
-  templateUrl: './list-lesson.html',
-  styleUrl: './list-lesson.scss'
+  templateUrl: './list-student.html',
+  styleUrl: './list-student.scss'
 })
-export class ListLesson {
-  constructor(public lessonService: LessonService, private translate: TranslateService) { }
+export class ListStudent {
+  constructor(public studentService: StudentService, private translate: TranslateService) { }
 
   selectedRowIDs: number[] = [];
 
@@ -28,7 +28,7 @@ export class ListLesson {
     return this.selectedRowIDs.includes(id);
   }
   selectAll() {
-    const allIds = this.lessonService.lessons().map(lesson => lesson.id);
+    const allIds = this.studentService.getStudents().map(student => student.id);
     if (this.selectedRowIDs.length === allIds.length) {
       
       this.selectedRowIDs = [];
@@ -51,7 +51,7 @@ export class ListLesson {
       cancelButtonColor: '#3085d6'
     }).then((result) => {
       if (result.isConfirmed) {
-        this.selectedRowIDs.forEach(id => this.lessonService.deleteLesson(id));
+        this.selectedRowIDs.forEach(id => this.studentService.deleteStudent(id));
         this.selectedRowIDs = []; 
         Swal.fire(
           this.translate.instant('congrulations'),
@@ -74,7 +74,7 @@ export class ListLesson {
       cancelButtonColor: '#3085d6'
     }).then((result) => {
       if (result.isConfirmed) {
-        this.lessonService.deleteLesson(id);
+        this.studentService.deleteStudent(id);
         Swal.fire(this.translate.instant('congrulations'), this.translate.instant('delete-success-message'), 'success');
       }
     });

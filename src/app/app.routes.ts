@@ -8,6 +8,9 @@ import { AddLesson } from './pages/lessons/add-lesson/add-lesson';
 import { ListLesson } from './pages/lessons/list-lesson/list-lesson';
 import { EditLesson } from './pages/lessons/edit-lesson/edit-lesson';
 import { LessonService } from './pages/lessons/lesson.service';
+import { ListStudent } from './pages/students/list-student/list-student';
+import { AddStudent } from './pages/students/add-student/add-student';
+import { EditStudent } from './pages/students/edit-student/edit-student';
 
 export const routes: Routes = [
   {
@@ -41,18 +44,23 @@ export const routes: Routes = [
     path: 'students',
     component: Students,
     data: { breadcrumb: 'students' },
-    // children: [
-    //   {
-    //     path: '',
-    //     component: StudentList,
-    //     data: { breadcrumb: 'all' },
-    //   },
-    //   {
-    //     path: 'add',
-    //     component: AddStudent,
-    //     data: { breadcrumb: 'add-student' },
-    //   },
-    // ]
+    children: [
+      {
+        path: '',
+        component: ListStudent,
+        data: { breadcrumb: 'all' },
+      },
+      {
+        path: 'add',
+        component: AddStudent,
+        data: { breadcrumb: 'add-student' },
+      },
+      {
+        path: ':slug',
+        component: EditStudent,
+        data: { breadcrumb: 'edit' },
+      }
+    ]
   },
   {
     path: 'exams',
