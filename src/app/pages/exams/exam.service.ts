@@ -10,14 +10,23 @@ export class ExamService {
             id: 1,
             lessonCode: 'a3c',
             studentId: 3,
-            score: 3,
-            date: '7/18/2001',
+            score: 5,
+            date: '2025-08-07T09:00',
             slug: 'riyaziyyat-ferid-haciyev-1',
             delete: 0,
-        }
+        },
+        {
+            id: 2,
+            lessonCode: 't5g',
+            studentId: 2,
+            score: 4,
+            date: '2025-08-07T11:00',
+            slug: 'kimya-leyla-rzayeva-2',
+            delete: 0,
+        },
     ]);
 
-    getRealLength(): number{
+    getRealLength(): number {
         return this.examsSignal().length;
     }
     getExams(): Exam[] {
@@ -76,18 +85,15 @@ export class ExamService {
 
     deleteExamsByLessonCode(code: string) {
         this.examsSignal.update(exams =>
-            exams.map(exam =>
-                exam.lessonCode === code ? { ...exam, delete: 1 } : exam
-            )
+            exams.filter(exam => exam.lessonCode !== code)
         );
     }
+
     deleteExamsByStudentId(id: number) {
         this.examsSignal.update(exams =>
-            exams.map(exam =>
-                exam.studentId === id ? { ...exam, delete: 1 } : exam
-            )
-        )
+            exams.filter(exam => exam.studentId !== id)
+        );
     }
 
-    
+
 }

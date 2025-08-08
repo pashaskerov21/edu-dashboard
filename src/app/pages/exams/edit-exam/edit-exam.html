@@ -18,8 +18,6 @@
                 <div class="invalid-feedback" [class.d-block]="submitted && (!lessonCode)">
                     {{'invalid-select-message' | translate}}
                 </div>
-                <a routerLink="/lessons" class="add-button btn-hidden"
-                    [class.d-block]="lessonService.getLessons().length === 0">{{'add' | translate}}</a>
             </div>
 
             <div class="form-item mb-4">
@@ -39,13 +37,11 @@
                 <div class="invalid-feedback" [class.d-block]="submitted && (!studentId)">
                     {{'invalid-select-message' | translate}}
                 </div>
-                <a routerLink="/students" class="add-button btn-hidde"
-                    [class.d-block]="studentService.getStudents().length === 0">{{'add' | translate}}</a>
             </div>
 
             <div class="form-item mb-4">
                 <label for="date">{{"date" | translate}}</label>
-                <input type="date" id="date" [(ngModel)]="date" name="date" [class.is-invalid]="submitted && (!date)">
+                <input type="datetime-local" id="date" [(ngModel)]="date" name="date" [class.is-invalid]="submitted && (!date)">
                 <div class="invalid-feedback" [class.d-block]="submitted && (!date)">
                     {{'invalid-input-message' | translate}}
                 </div>

@@ -5,10 +5,12 @@ import { ExamService } from '../exams/exam.service';
 import { Lesson } from '../lessons/lesson.model';
 import { Student } from '../students/student.model';
 import { Exam } from '../exams/exam.model';
+import { TranslateModule } from '@ngx-translate/core';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-home',
-  imports: [],
+  imports: [TranslateModule, RouterLink],
   templateUrl: './home.html',
   styleUrl: './home.scss'
 })

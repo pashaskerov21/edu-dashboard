@@ -78,7 +78,7 @@ export class EditExam {
 
 
     const currentLesson = this.lessonService.getLessons().find(lesson => lesson.code === this.lessonCode);
-    const currentStudent = this.studentService.getStudents().find(student => student.id === this.studentId);
+    const currentStudent = this.studentService.getStudents().find(student => student.id === Number(this.studentId));
 
     const newSlug = `${currentStudent?.firstname.toLocaleLowerCase().trim().replace(/\s+/g, '-')}-${currentStudent?.lastname.toLocaleLowerCase().trim().replace(/\s+/g, '-')}-${currentLesson?.name.toLocaleLowerCase().trim().replace(/\s+/g, '-')}-${this.exam.id}`;
     const existing = this.examService.getExams().find(ex =>
@@ -102,7 +102,7 @@ export class EditExam {
       });
       return;
     }
-
+    
     this.examService.updateExam(this.exam.id, newSlug, updateExam);
     Swal.fire({
       title: this.translate.instant('congrulations'),

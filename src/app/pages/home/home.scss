@@ -1,0 +1,37 @@
+@use '../../scss/mixin' as *;
+@use '../../scss/variables' as *;
+
+
+.home-wrapper {
+    width: 100%;
+    @include column-center;
+
+    @media (min-width: 768px) {
+        @include row-center;
+    }
+
+    .link-item {
+        width: 100%;
+        padding: 30px;
+        @include column-center;
+        gap: 15px;
+        background-color: light-dark(#ffffff, #37404A);
+        border: 1px solid light-dark(#6c757d, #aab8c5);
+
+        i,
+        span {
+            color: light-dark(#6c757d, #aab8c5);
+        }
+        i{
+            font-size: 30px;
+        }
+        span{
+            &.link-value{
+                font-size: 35px;
+            }
+            &.link-title{
+                font-size: 22px;
+            }
+        }
+    }
+}

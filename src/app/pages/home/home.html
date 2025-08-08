@@ -1,1 +1,17 @@
-<p>home works!</p>
+<div class="home-wrapper">
+    <a routerLink="/lessons" class="link-item">
+        <i class="fa-solid fa-book"></i>
+        <span class="link-value">{{lessons.length}}</span>
+        <span class="link-title">{{'lessons' | translate}}</span>
+    </a>
+    <a routerLink="/students" class="link-item">
+        <i class="fa-solid fa-users"></i>
+        <span class="link-value">{{students.length}}</span>
+        <span class="link-title">{{'students' | translate}}</span>
+    </a>
+    <a routerLink="/exams" class="link-item">
+        <i class="fa-solid fa-clipboard"></i>
+        <span class="link-value">{{exams.length}}</span>
+        <span class="link-title">{{'exams' | translate}}</span>
+    </a>
+</div>

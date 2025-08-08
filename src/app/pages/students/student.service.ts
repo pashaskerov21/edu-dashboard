@@ -61,6 +61,14 @@ export class StudentService {
             class: 11,
             delete: 0,
         },
+        {
+            id: 8,
+            slug: 'ceyhun-mehdiyev-8',
+            firstname: "Ceyhun",
+            lastname: "Mehdiyev",
+            class: 11,
+            delete: 0,
+        },
     ]);
 
     private examService = inject(ExamService);

@@ -20,7 +20,7 @@ export class Deleted implements OnInit {
   deletedExams: Exam[] = [];
 
   constructor(public lessonService: LessonService, public studentService: StudentService, public examService: ExamService, public translate: TranslateService) {
-    
+
   }
 
   ngOnInit(): void {
@@ -82,21 +82,35 @@ export class Deleted implements OnInit {
     }
   }
   restoreExamFunction(id: number) {
-    const status: boolean = this.examService.restoreExam(id);
-    if (status) {
-      Swal.fire({
-        title: this.translate.instant('congrulations'),
-        text: this.translate.instant('restore-success-message'),
-        icon: 'success',
-        confirmButtonText: 'OK'
-      });
-      this.ngOnInit();
-    } else {
-      Swal.fire({
-        icon: 'warning',
-        title: this.translate.instant('attention'),
-        text: this.translate.instant('restore-warning-message'),
-      });
+    const exam = this.examService.getDeletedExams().find(exam => exam.id === id);
+    if (exam) {
+      const lesson = this.lessonService.getLessons().find(l => l.code === exam.lessonCode);
+      const student = this.studentService.getStudents().find(s => s.id === exam.studentId);
+      if (lesson && student) {
+        const status: boolean = this.examService.restoreExam(id);
+        if (status) {
+          Swal.fire({
+            title: this.translate.instant('congrulations'),
+            text: this.translate.instant('restore-success-message'),
+            icon: 'success',
+            confirmButtonText: 'OK'
+          });
+          this.ngOnInit();
+        } else {
+          Swal.fire({
+            icon: 'warning',
+            title: this.translate.instant('attention'),
+            text: this.translate.instant('restore-warning-message'),
+          });
+        }
+      } else {
+        Swal.fire({
+          icon: 'warning',
+          title: this.translate.instant('attention'),
+          text: this.translate.instant('bu-melumat-berpa-oluna-bilmez'),
+        });
+      }
     }
+
   }
 }

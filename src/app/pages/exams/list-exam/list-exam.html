@@ -27,7 +27,7 @@
                 <td>{{getCurrentLesson(exam.lessonCode)?.name}}</td>
                 <td>{{getCurrentStudent(exam.studentId)?.firstname}} {{getCurrentStudent(exam.studentId)?.lastname}}
                 </td>
-                <td>{{exam.date}}</td>
+                <td>{{formatDate(exam.date)}}</td>
                 <td>{{exam.score}}</td>
                 <td>
                     <div class="operations">

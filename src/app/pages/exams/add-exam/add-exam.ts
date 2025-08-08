@@ -39,9 +39,7 @@ export class AddExam {
     this.students = this.studentService.getStudents();
   }
 
-  formatDate(dateString: string): string {
-    return new Intl.DateTimeFormat('en-US').format(new Date(dateString));
-  }
+  
   addExam(event: Event): void {
     event.preventDefault();
     this.submitted = true;
@@ -57,7 +55,7 @@ export class AddExam {
     const isDuplicate = currentExams.some(exam =>
       exam.lessonCode === this.lessonCode && this.studentId &&
       +exam.studentId === +this.studentId &&
-      exam.date === this.formatDate(this.date)
+      exam.date === this.date
     );
     if (isDuplicate) {
       Swal.fire({
@@ -85,7 +83,7 @@ export class AddExam {
       slug: slug,
       lessonCode: this.lessonCode,
       studentId: this.studentId!,
-      date: this.formatDate(this.date),
+      date: this.date,
       score: this.score!,
       delete: 0,
     }
