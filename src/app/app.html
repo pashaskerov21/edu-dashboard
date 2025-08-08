@@ -1,6 +1,6 @@
 <div class="app-wrapper">
     <app-sidebar [isOpen]="isSidebarOpen" (toggleSidebar)="toggleSidebar()" />
-    <div class="right-wrapper">
+    <div class="right-wrapper" [class.fullw]="isSidebarOpen">
         <app-navbar (toggleSidebar)="toggleSidebar()" (toggleTheme)="toggleTheme()" [currentTheme]="currentTheme" [currentLang]="currentLang" (languageChange)="setLanguage($event)" />
         <div class="content-wrapper">
             <app-breadcrumb></app-breadcrumb>
