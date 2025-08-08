@@ -4,16 +4,22 @@ import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import Swal from 'sweetalert2';
 import { LessonService } from '../lesson.service';
 import { RouterLink, RouterModule } from '@angular/router';
+import { Lesson } from '../lesson.model';
 
 @Component({
   selector: 'app-list-lesson',
-  imports: [NgClass, NgFor, NgIf, TranslateModule, RouterLink],
+  imports: [ TranslateModule, RouterLink],
   templateUrl: './list-lesson.html',
   styleUrl: './list-lesson.scss'
 })
 export class ListLesson {
-  constructor(public lessonService: LessonService, private translate: TranslateService) { }
-
+  lessons: Lesson[] = [];
+  constructor( public lessonService: LessonService, private translate: TranslateService) { 
+    this.lessons = this.lessonService.getLessons();
+  }
+  
+  
+  // lessons = this.lessonService.getLessons();
   selectedRowIDs: number[] = [];
 
   selectRow(id: number) {

@@ -4,12 +4,11 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { LessonService } from '../lesson.service';
 import Swal from 'sweetalert2';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
-import { NgClass, NgIf } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-edit-lesson',
-  imports: [NgClass, TranslateModule, FormsModule, NgIf],
+  imports: [TranslateModule, FormsModule],
   templateUrl: './edit-lesson.html',
   styleUrl: './edit-lesson.scss'
 })
@@ -17,7 +16,6 @@ export class EditLesson {
   lesson!: Lesson;
 
   name = '';
-  code = '';
   classNumber: number = 1;
   teacherFirstName = '';
   teacherLastName = '';
@@ -39,7 +37,6 @@ export class EditLesson {
         this.lesson = found;
 
         this.name = found.name;
-        this.code = found.code;
         this.classNumber = found.class;
         this.teacherFirstName = found.teacherFirstName;
         this.teacherLastName = found.teacherLastName;
@@ -53,22 +50,21 @@ export class EditLesson {
     event.preventDefault();
     this.submitted = true;
 
-    const isValid = this.name.trim().length >= 2 && this.code.trim().length >= 2 && !!this.classNumber && this.classNumber > 1 && this.classNumber < 99 && this.teacherFirstName.trim().length >= 2 && this.teacherLastName.trim().length >= 2;
+    const isValid = this.name.trim().length >= 2 && !!this.classNumber && this.classNumber > 1 && this.classNumber < 99 && this.teacherFirstName.trim().length >= 2 && this.teacherLastName.trim().length >= 2;
 
     if (!isValid) return;
 
 
-    const updatedLesson: Omit<Lesson, 'id' | 'slug' | 'delete'> = {
+    const updatedLesson: Omit<Lesson, 'id' | 'code' | 'slug' | 'delete'> = {
       name: this.name.trim(),
-      code: this.code.trim(),
       class: this.classNumber,
       teacherFirstName: this.teacherFirstName.trim(),
       teacherLastName: this.teacherLastName.trim(),
     };
 
-    const newSlug = `${updatedLesson.name.toLowerCase().replace(/\s+/g, '-')}-${updatedLesson.class}`;
+    const newSlug = `${updatedLesson.name.toLowerCase().replace(/\s+/g, '-')}-${this.lesson.code}${updatedLesson.class}`;
     const existing = this.lessonService.getLessons().find(l =>
-      (l.slug === newSlug || (l.code === updatedLesson.code && l.class === updatedLesson.class)) &&
+      (l.slug === newSlug || (l.class === updatedLesson.class)) &&
       l.id !== this.lesson.id
     );
 

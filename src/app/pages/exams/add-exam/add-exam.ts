@@ -8,10 +8,12 @@ import { Exam } from '../exam.model';
 import Swal from 'sweetalert2';
 import { NgClass, NgFor, NgIf } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { Lesson } from '../../lessons/lesson.model';
+import { Student } from '../../students/student.model';
 
 @Component({
   selector: 'app-add-exam',
-  imports: [NgIf, NgFor, NgClass, TranslateModule, FormsModule, RouterLink],
+  imports: [TranslateModule, FormsModule, RouterLink],
   templateUrl: './add-exam.html',
   styleUrl: './add-exam.scss'
 })
@@ -23,14 +25,23 @@ export class AddExam {
 
   submitted = false;
 
+  lessons: Lesson[] = [];
+  students: Student[] = [];
+
   constructor(
     public lessonService: LessonService,
     public studentService: StudentService,
     public examService: ExamService,
     private translate: TranslateService,
     private router: Router
-  ) { }
+  ) {
+    this.lessons = this.lessonService.getLessons();
+    this.students = this.studentService.getStudents();
+  }
 
+  formatDate(dateString: string): string {
+    return new Intl.DateTimeFormat('en-US').format(new Date(dateString));
+  }
   addExam(event: Event): void {
     event.preventDefault();
     this.submitted = true;
@@ -40,7 +51,7 @@ export class AddExam {
 
     const currentExams = this.examService.getExams();
     const currentLesson = this.lessonService.getLessons().find(lesson => lesson.code === this.lessonCode);
-    const currentStudent = this.studentService.getStudents().find(student => student.id === this.studentId);
+    const currentStudent = this.studentService.getStudents().find(student => student.id === Number(this.studentId));
 
 
     const isDuplicate = currentExams.some(exam =>
@@ -57,6 +68,15 @@ export class AddExam {
       return;
     }
 
+    if (currentLesson && currentStudent && Number(currentLesson.class) !== Number(currentStudent.class)) {
+      Swal.fire({
+        icon: 'warning',
+        title: this.translate.instant('attention'),
+        text: this.translate.instant('exam-class-warning-message'),
+      });
+      return;
+    }
+
     const lastId = currentExams.length > 0 ? currentExams[currentExams.length - 1].id : 0;
     const newId = lastId + 1;
     const slug = `${currentStudent?.firstname.toLocaleLowerCase().trim().replace(/\s+/g, '-')}-${currentStudent?.lastname.toLocaleLowerCase().trim().replace(/\s+/g, '-')}-${currentLesson?.name.toLocaleLowerCase().trim().replace(/\s+/g, '-')}-${newId}`;
@@ -66,7 +86,7 @@ export class AddExam {
       slug: slug,
       lessonCode: this.lessonCode,
       studentId: this.studentId!,
-      date: this.date,
+      date: this.formatDate(this.date),
       score: this.score!,
       delete: 0,
     }

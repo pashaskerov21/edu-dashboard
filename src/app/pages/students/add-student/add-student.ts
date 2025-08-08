@@ -5,11 +5,10 @@ import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
 import { Student } from '../student.model';
 import { FormsModule } from '@angular/forms';
-import { NgClass, NgIf } from '@angular/common';
 
 @Component({
   selector: 'app-add-student',
-  imports: [NgIf, TranslateModule, FormsModule, NgClass],
+  imports: [TranslateModule, FormsModule],
   templateUrl: './add-student.html',
   styleUrl: './add-student.scss'
 })

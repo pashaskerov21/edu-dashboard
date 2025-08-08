@@ -1,4 +1,3 @@
-import { NgClass, NgFor, NgIf } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
@@ -13,7 +12,7 @@ import { Student } from '../../students/student.model';
 
 @Component({
   selector: 'app-edit-exam',
-  imports: [NgIf, NgClass, NgFor, TranslateModule, FormsModule],
+  imports: [TranslateModule, FormsModule],
   templateUrl: './edit-exam.html',
   styleUrl: './edit-exam.scss'
 })
@@ -92,6 +91,14 @@ export class EditExam {
         icon: 'warning',
         title: this.translate.instant('attention'),
         text: this.translate.instant('duplicate-message'),
+      });
+      return;
+    }
+    if (currentLesson && currentStudent && Number(currentLesson.class) !== Number(currentStudent.class)) {
+      Swal.fire({
+        icon: 'warning',
+        title: this.translate.instant('attention'),
+        text: this.translate.instant('exam-class-warning-message'),
       });
       return;
     }

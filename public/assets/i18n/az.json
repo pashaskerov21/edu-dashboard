@@ -43,5 +43,6 @@
     "score": "Qiymət",
     "no-lesson": "Dərs yoxdur",
     "no-student": "Şagird yoxdur",
-    "select": "Seçin"
+    "select": "Seçin",
+    "exam-class-warning-message": "Seçilən dərs və şagirdin sinifləri eyni dəyərə malik olmalıdır"
 }

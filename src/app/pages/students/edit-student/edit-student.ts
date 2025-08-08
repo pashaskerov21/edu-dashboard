@@ -9,7 +9,7 @@ import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-edit-student',
-  imports: [NgClass, TranslateModule, FormsModule, NgIf],
+  imports: [TranslateModule, FormsModule],
   templateUrl: './edit-student.html',
   styleUrl: './edit-student.scss'
 })

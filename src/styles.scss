@@ -220,6 +220,7 @@ section {
 
     .delete-all,
     .delete-select {
+        display: none;
         background-color: #727CF5;
         color: #fff;
         padding: 10px;
@@ -257,6 +258,9 @@ section {
 
         @media (min-width: 992px) {
             font-size: 16px;
+        }
+        &.btn-hidden{
+            display: none;
         }
     }
 
@@ -375,7 +379,7 @@ form.general-form {
     }
 
     .invalid-feedback {
-        display: block !important;
+        display: none;
         color: #FA5C7C;
         font-size: 14px;
         margin-top: 3px;

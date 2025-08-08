@@ -9,7 +9,7 @@ export class LessonService {
         {
             id: 1,
             slug: 'riyaziyyat-10',
-            code: 'MAT',
+            code: 'a3c',
             name: 'Riyaziyyat',
             class: 10,
             teacherFirstName: 'Aqil',
@@ -19,7 +19,7 @@ export class LessonService {
         {
             id: 2,
             slug: 'fizika-11',
-            code: 'FIZ',
+            code: 'v42',
             name: 'Fizika',
             class: 11,
             teacherFirstName: 'Leyla',
@@ -29,7 +29,7 @@ export class LessonService {
         {
             id: 3,
             slug: 'kimya-9',
-            code: 'KMY',
+            code: 't5g',
             name: 'Kimya',
             class: 9,
             teacherFirstName: 'Kamran',
@@ -38,22 +38,32 @@ export class LessonService {
         },
         {
             id: 4,
-            slug: 'biologiya-8',
-            code: 'BIO',
+            slug: 'biologiya-10',
+            code: 'dg2',
             name: 'Biologiya',
-            class: 8,
+            class: 10,
             teacherFirstName: 'Sevda',
             teacherLastName: 'Məmmədova',
             delete: 0,
         },
         {
             id: 5,
-            slug: 'tarix-7',
-            code: 'TAR',
+            slug: 'tarix-9',
+            code: 'r5g',
             name: 'Tarix',
-            class: 7,
+            class: 9,
             teacherFirstName: 'Ramin',
             teacherLastName: 'Əhmədov',
+            delete: 0,
+        },
+        {
+            id: 6,
+            slug: 'ingilis-dili-11',
+            code: 'gb3',
+            name: 'Ingilis dili',
+            class: 11,
+            teacherFirstName: 'Fəridə',
+            teacherLastName: 'Nağıyeva',
             delete: 0,
         }
     ]);
@@ -89,7 +99,7 @@ export class LessonService {
             }
         ])
     }
-    updateLesson(id: number, slug: string, updated: Omit<Lesson, 'id' | 'slug' | 'delete'>) {
+    updateLesson(id: number, slug: string, updated: Omit<Lesson, 'id' | 'code' | 'slug' | 'delete'>) {
         this.lessonsSignal.update(lessons =>
             lessons.map(lesson =>
                 lesson.id === id
@@ -108,6 +118,29 @@ export class LessonService {
             );
 
             this.examService.deleteExamsByLessonCode(deletedLesson.code);
+        }
+    }
+
+    generateUniqueCode(): string {
+        const letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
+        const numbers = '0123456789';
+        const existingCodes = this.getLessons().map(lesson => lesson.code);
+
+        while (true) {
+            const allChars = letters + numbers;
+            let code = '';
+
+            for (let i = 0; i < 3; i++) {
+                const randIndex = Math.floor(Math.random() * allChars.length);
+                code += allChars[randIndex];
+            }
+
+            const hasLetter = /[A-Z]/.test(code);
+            const hasNumber = /[0-9]/.test(code);
+
+            if (hasLetter && hasNumber && !existingCodes.includes(code)) {
+                return code;
+            }
         }
     }
 }

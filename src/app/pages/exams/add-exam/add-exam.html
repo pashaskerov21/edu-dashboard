@@ -6,18 +6,23 @@
                 <div class="select-wrapper">
                     <i class="fa-solid fa-chevron-down"></i>
                     <select id="lessonCode" [(ngModel)]="lessonCode" name="lessonCode"
-                        [ngClass]="{ 'is-invalid': submitted && !lessonCode }">
-                        <option value="">{{lessonService.getLessons().length === 0 ? ('no-lesson' | translate) :
-                            ('select' | translate)}}</option>
-                        <option *ngFor="let lesson of lessonService.getLessons()" value="{{lesson.code}}">
-                            {{lesson.name}}
+                        [class.is-invalid]="submitted && !lessonCode">
+                        <option value="">
+                            {{lessonService.getLessons().length === 0 ? ('no-lesson' | translate) : ('select' |
+                            translate)}}
                         </option>
+                        @for (lesson of lessons; track lesson.id) {
+                        <option value="{{lesson.code}}">
+                            {{lesson.name}} - {{lesson.class}}
+                        </option>
+                        }
                     </select>
                 </div>
-                <div *ngIf="submitted && (!lessonCode)" class="invalid-feedback">
+                <div class="invalid-feedback" [class.d-block]="submitted && (!lessonCode)">
                     {{'invalid-select-message' | translate}}
                 </div>
-                <a *ngIf="lessonService.getLessons().length === 0" routerLink="/lessons" class="add-button">{{'add' | translate}}</a>
+                <a routerLink="/lessons" class="add-button btn-hidden"
+                    [class.d-block]="lessonService.getLessons().length === 0">{{'add' | translate}}</a>
             </div>
 
             <div class="form-item mb-4">
@@ -25,25 +30,28 @@
                 <div class="select-wrapper">
                     <i class="fa-solid fa-chevron-down"></i>
                     <select id="studentId" [(ngModel)]="studentId" name="studentId"
-                        [ngClass]="{ 'is-invalid': submitted && !studentId }">
-                        <option  [ngValue]="null">{{studentService.getStudents().length === 0 ? ('no-student' | translate) :
+                        [class.is-invalid]="submitted && !studentId">
+                        <option [ngValue]="null">{{studentService.getStudents().length === 0 ? ('no-student' |
+                            translate) :
                             ('select' | translate)}}</option>
-                        <option *ngFor="let student of studentService.getStudents()" value="{{student.id}}">
-                            {{student.firstname}} {{student.lastname}}
+                        @for (student of students; track student.id) {
+                        <option value="{{student.id}}">
+                            {{student.firstname}} {{student.lastname}} - {{student.class}}
                         </option>
+                        }
                     </select>
                 </div>
-                <div *ngIf="submitted && (!studentId)" class="invalid-feedback">
+                <div class="invalid-feedback" [class.d-block]="submitted && (!studentId)">
                     {{'invalid-select-message' | translate}}
                 </div>
-                <a *ngIf="studentService.getStudents().length === 0" routerLink="/students" class="add-button">{{'add' | translate}}</a>
+                <a routerLink="/students" class="add-button btn-hidde"
+                    [class.d-block]="studentService.getStudents().length === 0">{{'add' | translate}}</a>
             </div>
 
             <div class="form-item mb-4">
                 <label for="date">{{"date" | translate}}</label>
-                <input type="date" id="date" [(ngModel)]="date" name="date"
-                    [ngClass]="{ 'is-invalid': submitted && (!date) }">
-                <div *ngIf="submitted && (!date)" class="invalid-feedback">
+                <input type="date" id="date" [(ngModel)]="date" name="date" [class.is-invalid]="submitted && (!date)">
+                <div class="invalid-feedback" [class.d-block]="submitted && (!date)">
                     {{'invalid-input-message' | translate}}
                 </div>
             </div>
@@ -51,8 +59,8 @@
             <div class="form-item mb-4">
                 <label for="score">{{"score" | translate}}</label>
                 <input type="number" id="score" min="1" max="9" [(ngModel)]="score" name="score"
-                    [ngClass]="{ 'is-invalid': submitted && (!score || score < 1 || score > 9) }">
-                <div *ngIf="submitted && (!score || score < 1 || score > 9)" class="invalid-feedback">
+                    [class.is-invalid]="submitted && (!score || score < 1 || score > 9)">
+                <div class="invalid-feedback" [class.d-block]="submitted && (!score || score < 1 || score > 9)">
                     {{'invalid-input-message' | translate}} (1-9)
                 </div>
             </div>

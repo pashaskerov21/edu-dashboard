@@ -1,9 +1,11 @@
 <div class="main-operations">
-    <a class="add-button" routerLink="/lessons/add">{{'add-lesson' | translate}} <i class="fa-solid fa-circle-plus"></i></a>
-    <button class="delete-all" [ngClass]="lessonService.getLessons().length === selectedRowIDs.length ? 'active' : ''" *ngIf="lessonService.getLessons().length > 0" (click)="selectAll()">
+    <a class="add-button" routerLink="/lessons/add">{{'add-lesson' | translate}} <i
+            class="fa-solid fa-circle-plus"></i></a>
+    <button class="delete-all" [class.active]="lessonService.getLessons().length === selectedRowIDs.length"
+        [class.d-block]="lessonService.getLessons().length > 0" (click)="selectAll()">
         {{"select-all" | translate}}
     </button>
-    <button class="delete-select" *ngIf="selectedRowIDs.length > 0" (click)="deleteSelected()">
+    <button class="delete-select" [class.d-block]="selectedRowIDs.length > 0" (click)="deleteSelected()">
         {{"delete-selected" | translate}}
     </button>
 </div>
@@ -20,8 +22,9 @@
             </tr>
         </thead>
         <tbody>
-            <tr *ngFor="let lesson of lessonService.getLessons();let i = index">
-                <td>{{i+1}}</td>
+            @for (lesson of lessons; track lesson.id) {
+            <tr>
+                <td>{{ lessons.indexOf(lesson) + 1 }}</td>
                 <td>{{lesson.name}}</td>
                 <td>{{lesson.code}}</td>
                 <td>{{lesson.class}}</td>
@@ -29,12 +32,14 @@
                 <td>
                     <div class="operations">
                         <a [routerLink]="['/lessons',lesson.slug]" class="edit-btn"><i class="fa-solid fa-edit"></i></a>
-                        <button class="delete-btn" (click)="delete(lesson.id)"><i class="fa-solid fa-trash"></i></button>
-                        <button class="check-btn" [ngClass]="isSelected(lesson.id) ? 'active' : ''" (click)="selectRow(lesson.id)"><i class="fa-solid fa-check"></i></button>
+                        <button class="delete-btn" (click)="delete(lesson.id)"><i
+                                class="fa-solid fa-trash"></i></button>
+                        <button class="check-btn" [class.active]="isSelected(lesson.id)"
+                            (click)="selectRow(lesson.id)"><i class="fa-solid fa-check"></i></button>
                     </div>
                 </td>
             </tr>
+            }
         </tbody>
     </table>
 </div>
-

@@ -6,10 +6,10 @@ export class ExamService {
     private examsSignal = signal<Exam[]>([
         {
             id: 1,
-            lessonCode: 'MAT',
-            studentId: 1,
+            lessonCode: 'a3c',
+            studentId: 3,
             score: 3,
-            date: '07/18/2001',
+            date: '7/18/2001',
             slug: 'riyaziyyat-ferid-haciyev-1',
             delete: 0,
         }

@@ -4,15 +4,19 @@ import { RouterLink } from '@angular/router';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { StudentService } from '../student.service';
 import Swal from 'sweetalert2';
+import { Student } from '../student.model';
 
 @Component({
   selector: 'app-list-student',
-  imports: [NgIf, NgFor, NgClass, TranslateModule, RouterLink],
+  imports: [TranslateModule, RouterLink],
   templateUrl: './list-student.html',
   styleUrl: './list-student.scss'
 })
 export class ListStudent {
-  constructor(public studentService: StudentService, private translate: TranslateService) { }
+  students: Student[] = [];
+  constructor(public studentService: StudentService, private translate: TranslateService) {
+    this.students = this.studentService.getStudents();
+  }
 
   selectedRowIDs: number[] = [];
 
@@ -53,7 +57,7 @@ export class ListStudent {
       if (result.isConfirmed) {
         this.selectedRowIDs.forEach(id => {
           const student = this.studentService.getStudents().find(l => l.id === id);
-          if(student){
+          if (student) {
             this.studentService.updateDeleteValue(id)
           }
         })

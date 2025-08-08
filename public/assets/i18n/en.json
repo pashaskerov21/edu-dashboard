@@ -43,5 +43,6 @@
     "score": "Score",
     "no-lesson": "No lesson",
     "no-student": "No student",
-    "select": "Select"
+    "select": "Select",
+    "exam-class-warning-message": "The selected course and the student's grades must have the same value."
 }

@@ -1,9 +1,11 @@
 <div class="main-operations">
-    <a class="add-button" routerLink="/students/add">{{'add-student' | translate}} <i class="fa-solid fa-circle-plus"></i></a>
-    <button class="delete-all" [ngClass]="studentService.getStudents().length === selectedRowIDs.length ? 'active' : ''" *ngIf="studentService.getStudents().length > 0" (click)="selectAll()">
+    <a class="add-button" routerLink="/students/add">{{'add-student' | translate}} <i
+            class="fa-solid fa-circle-plus"></i></a>
+    <button class="delete-all" [class.active]="studentService.getStudents().length === selectedRowIDs.length"
+        [class.d-block]="studentService.getStudents().length > 0" (click)="selectAll()">
         {{"select-all" | translate}}
     </button>
-    <button class="delete-select" *ngIf="selectedRowIDs.length > 0" (click)="deleteSelected()">
+    <button class="delete-select" [class.d-block]="selectedRowIDs.length > 0" (click)="deleteSelected()">
         {{"delete-selected" | translate}}
     </button>
 </div>
@@ -18,18 +20,23 @@
             </tr>
         </thead>
         <tbody>
-            <tr *ngFor="let student of studentService.getStudents();let i = index">
-                <td>{{i+1}}</td>
+            @for (student of students; track student.id) {
+            <tr>
+                <td>{{students.indexOf(student)+1}}</td>
                 <td>{{student.firstname}} {{student.lastname}}</td>
                 <td>{{student.class}}</td>
                 <td>
                     <div class="operations">
-                        <a [routerLink]="['/students',student.slug]" class="edit-btn"><i class="fa-solid fa-edit"></i></a>
-                        <button class="delete-btn" (click)="delete(student.id)"><i class="fa-solid fa-trash"></i></button>
-                        <button class="check-btn" [ngClass]="isSelected(student.id) ? 'active' : ''" (click)="selectRow(student.id)"><i class="fa-solid fa-check"></i></button>
+                        <a [routerLink]="['/students',student.slug]" class="edit-btn"><i
+                                class="fa-solid fa-edit"></i></a>
+                        <button class="delete-btn" (click)="delete(student.id)"><i
+                                class="fa-solid fa-trash"></i></button>
+                        <button class="check-btn" [class.active]="isSelected(student.id)"
+                            (click)="selectRow(student.id)"><i class="fa-solid fa-check"></i></button>
                     </div>
                 </td>
             </tr>
+            }
         </tbody>
     </table>
 </div>

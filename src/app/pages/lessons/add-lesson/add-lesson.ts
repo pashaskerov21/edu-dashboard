@@ -4,18 +4,16 @@ import { LessonService } from '../lesson.service';
 import Swal from 'sweetalert2';
 import { Lesson } from '../lesson.model';
 import { FormsModule, NgModel } from '@angular/forms';
-import { NgClass, NgIf } from '@angular/common';
 import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-add-lesson',
-  imports: [TranslateModule, FormsModule, NgClass, NgIf],
+  imports: [TranslateModule, FormsModule],
   templateUrl: './add-lesson.html',
   styleUrl: './add-lesson.scss'
 })
 export class AddLesson {
   name = '';
-  code = '';
   classNumber: number | null = null;
   teacherFirstName = '';
   teacherLastName = '';
@@ -28,14 +26,14 @@ export class AddLesson {
     event.preventDefault();
     this.submitted = true;
 
-    const isValid = this.name.trim().length >= 2 && this.code.trim().length >= 2 && !!this.classNumber && this.classNumber > 1 && this.classNumber < 99 && this.teacherFirstName.trim().length >= 2 && this.teacherLastName.trim().length >= 2;
+    const isValid = this.name.trim().length >= 2 && !!this.classNumber && this.classNumber > 1 && this.classNumber < 99 && this.teacherFirstName.trim().length >= 2 && this.teacherLastName.trim().length >= 2;
 
     if (!isValid) return;
 
     const currentLessons = this.lessonService.getLessons();
     const isDuplicate = currentLessons.some(lesson =>
-      lesson.code.toLocaleLowerCase().trim() === this.code.toLocaleLowerCase().trim() ||
-      (lesson.name.toLocaleLowerCase().trim() === this.name.toLocaleLowerCase().trim() && lesson.class === this.classNumber)
+
+      lesson.name.toLocaleLowerCase().trim() === this.name.toLocaleLowerCase().trim() && lesson.class === this.classNumber
     );
 
     if (isDuplicate) {
@@ -49,12 +47,14 @@ export class AddLesson {
 
     const lastId = currentLessons.length > 0 ? currentLessons[currentLessons.length - 1].id : 0;
     const newId = lastId + 1;
-    const slug = `${this.name.trim().toLocaleLowerCase().replace(/\s+/g, '-')}-${this.classNumber}`;
+    const newCode = this.lessonService.generateUniqueCode();
+    const slug = `${this.name.trim().toLocaleLowerCase().replace(/\s+/g, '-')}-${newCode}${this.classNumber}`;
+
 
     const newLesson: Lesson = {
       id: newId,
       name: this.name.trim(),
-      code: this.code.trim(),
+      code: newCode,
       class: this.classNumber!,
       teacherFirstName: this.teacherFirstName.trim(),
       teacherLastName: this.teacherLastName.trim(),
@@ -77,7 +77,6 @@ export class AddLesson {
 
     // Form reset
     this.name = '';
-    this.code = '';
     this.classNumber = null;
     this.teacherFirstName = '';
     this.teacherLastName = '';

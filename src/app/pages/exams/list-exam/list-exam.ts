@@ -3,36 +3,39 @@ import { RouterLink } from '@angular/router';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { ExamService } from '../exam.service';
 import Swal from 'sweetalert2';
-import { NgClass, NgFor, NgIf } from '@angular/common';
 import { LessonService } from '../../lessons/lesson.service';
 import { StudentService } from '../../students/student.service';
 import { Lesson } from '../../lessons/lesson.model';
 import { Student } from '../../students/student.model';
+import { Exam } from '../exam.model';
 
 @Component({
   selector: 'app-list-exam',
-  imports: [NgClass, NgFor, NgIf, TranslateModule, RouterLink],
+  imports: [TranslateModule, RouterLink],
   templateUrl: './list-exam.html',
   styleUrl: './list-exam.scss'
 })
 export class ListExam {
+  exams: Exam[] = [];
   constructor(
-    public examService: ExamService, 
+    public examService: ExamService,
     public lessonService: LessonService,
     public studentService: StudentService,
     private translate: TranslateService
-  ) { }
+  ) {
+    this.exams = this.examService.getExams();
+  }
 
-  getCurrentLesson(code: string): Lesson | null{
+  getCurrentLesson(code: string): Lesson | null {
     const currentLesson = this.lessonService.getLessons().find(lesson => lesson.code === code);
-    if(currentLesson){
+    if (currentLesson) {
       return currentLesson;
     }
     return null;
   }
-  getCurrentStudent(id: number): Student | null{
+  getCurrentStudent(id: number): Student | null {
     const currentStudent = this.studentService.getStudents().find(st => st.id === Number(id));
-    if(currentStudent){
+    if (currentStudent) {
       return currentStudent;
     }
     return null;

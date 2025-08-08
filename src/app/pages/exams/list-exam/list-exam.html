@@ -1,10 +1,10 @@
 <div class="main-operations">
     <a class="add-button" routerLink="/exams/add">{{'add-exam' | translate}} <i class="fa-solid fa-circle-plus"></i></a>
-    <button class="delete-all" [ngClass]="examService.getExams().length === selectedRowIDs.length ? 'active' : ''"
-        *ngIf="examService.getExams().length > 0" (click)="selectAll()">
+    <button class="delete-all" [class.active]="examService.getExams().length === selectedRowIDs.length"
+        [class.d-block]="examService.getExams().length > 0" (click)="selectAll()">
         {{"select-all" | translate}}
     </button>
-    <button class="delete-select" *ngIf="selectedRowIDs.length > 0" (click)="deleteSelected()">
+    <button class="delete-select" [class.d-block]="selectedRowIDs.length > 0" (click)="deleteSelected()">
         {{"delete-selected" | translate}}
     </button>
 </div>
@@ -21,21 +21,25 @@
             </tr>
         </thead>
         <tbody>
-            <tr *ngFor="let exam of examService.getExams();let i = index">
-                <td>{{i+1}}</td>
+            @for(exam of exams; track exam.id){
+            <tr>
+                <td>{{exams.indexOf(exam) + 1}}</td>
                 <td>{{getCurrentLesson(exam.lessonCode)?.name}}</td>
-                <td>{{getCurrentStudent(exam.studentId)?.firstname}} {{getCurrentStudent(exam.studentId)?.lastname}}</td>
+                <td>{{getCurrentStudent(exam.studentId)?.firstname}} {{getCurrentStudent(exam.studentId)?.lastname}}
+                </td>
                 <td>{{exam.date}}</td>
                 <td>{{exam.score}}</td>
                 <td>
                     <div class="operations">
                         <a [routerLink]="['/exams',exam.slug]" class="edit-btn"><i class="fa-solid fa-edit"></i></a>
                         <button class="delete-btn" (click)="delete(exam.id)"><i class="fa-solid fa-trash"></i></button>
-                        <button class="check-btn" [ngClass]="isSelected(exam.id) ? 'active' : ''"
-                            (click)="selectRow(exam.id)"><i class="fa-solid fa-check"></i></button>
+                        <button class="check-btn" [class.active]="isSelected(exam.id)" (click)="selectRow(exam.id)"><i
+                                class="fa-solid fa-check"></i>
+                        </button>
                     </div>
                 </td>
             </tr>
+            }
         </tbody>
     </table>
 </div>
