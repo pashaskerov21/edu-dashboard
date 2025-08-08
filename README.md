@@ -39,12 +39,12 @@ Hər biri üçün CRUD əməliyyatları həyata keçirilə bilər (Əlavə et, Y
 
 ## Texnologiyalar
 
-- [Angular 20](https://angular.io/)
+- Angular JS
 - TypeScript
 - SCSS
 - Angular Router
 - Angular Signals
-- `ngx-translate` – Beynəlxalqlaşdırma üçün
-- SweetAlert2 – Popup bildirişlər
+- `ngx-translate`
+- SweetAlert2
 
 ---
