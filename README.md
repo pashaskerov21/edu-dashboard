@@ -1,59 +1,50 @@
 # EduDashboard
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 20.1.4.
+**EduDashboard** — təhsil müəssisələri üçün hazırlanmış veb əsaslı idarəetmə panelidir. Tətbiq vasitəsilə dərslər, şagirdlər və imtahan məlumatları üzərində idarəetmə aparmaq mümkündür.
 
-## Development server
+🔗 **Canlı Demo:** [https://edu-dashboard-angular.vercel.app/](https://edu-dashboard-angular.vercel.app/)
 
-To start a local development server, run:
+---
 
-```bash
-ng serve
-```
+## 🧩 Modul Strukturu
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+Layihə 3 əsas məlumat quruluşuna bölünüb:
+- **Dərslər**
+- **Şagirdlər**
+- **İmtahanlar**
 
-## Code scaffolding
+Hər biri üçün CRUD əməliyyatları həyata keçirilə bilər (Əlavə et, Yenilə, Sil, Bax).
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+---
 
-```bash
-ng generate component component-name
-```
+## 🚀 Əsas Funksionallıqlar
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+- Məlumatların siyahı şəklində göstərilməsi
+- Yeni məlumatların əlavə olunması
+- Mövcud məlumatların redaktəsi
+- Tək və ya toplu silinmə
+- Silinmiş məlumatların bərpa edilməsi
+- Bütün məlumatlarda funksional axtarış sistemi
 
-```bash
-ng generate --help
-```
+---
 
-## Building
+## 🎨 Əlavə Xüsusiyyətlər
 
-To build the project run:
+- İki tema dəstəyi (Light / Dark Mode)
+- Tam çoxdilli dəstək (🇦🇿 Azərbaycan, 🇬🇧 İngilis, 🇷🇺 Rus)
+- Bütün statik mətnlər `JSON` faylları vasitəsilə idarə olunur
+- Dinamik dil dəyişmə funksiyası
 
-```bash
-ng build
-```
+---
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+## 🛠️ Texnologiyalar
 
-## Running unit tests
+- [Angular 20](https://angular.io/)
+- TypeScript
+- SCSS
+- Angular Router
+- Angular Signals
+- `ngx-translate` – Beynəlxalqlaşdırma üçün
+- SweetAlert2 – Popup bildirişlər
 
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+---

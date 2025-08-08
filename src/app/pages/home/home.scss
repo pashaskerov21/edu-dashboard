@@ -16,11 +16,11 @@
         @include column-center;
         gap: 15px;
         background-color: light-dark(#ffffff, #37404A);
-        border: 1px solid light-dark(#6c757d, #aab8c5);
+        border: 1px solid light-dark($txt-color-3, $txt-color-1);
 
         i,
         span {
-            color: light-dark(#6c757d, #aab8c5);
+            color: light-dark($txt-color-3, $txt-color-1);
         }
         i{
             font-size: 30px;
