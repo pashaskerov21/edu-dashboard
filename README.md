@@ -6,7 +6,7 @@
 
 ---
 
-## 🧩 Modul Strukturu
+## Modul Strukturu
 
 Layihə 3 əsas məlumat quruluşuna bölünüb:
 - **Dərslər**
@@ -17,7 +17,7 @@ Hər biri üçün CRUD əməliyyatları həyata keçirilə bilər (Əlavə et, Y
 
 ---
 
-## 🚀 Əsas Funksionallıqlar
+## Əsas Funksionallıqlar
 
 - Məlumatların siyahı şəklində göstərilməsi
 - Yeni məlumatların əlavə edilməsi (Create)
@@ -28,7 +28,7 @@ Hər biri üçün CRUD əməliyyatları həyata keçirilə bilər (Əlavə et, Y
 
 ---
 
-## 🎨 Əlavə Xüsusiyyətlər
+## Əlavə Xüsusiyyətlər
 
 - İki tema dəstəyi (Light / Dark Mode)
 - Tam çoxdilli dəstək (🇦🇿 Azərbaycan, 🇬🇧 İngilis, 🇷🇺 Rus)
@@ -37,7 +37,7 @@ Hər biri üçün CRUD əməliyyatları həyata keçirilə bilər (Əlavə et, Y
 
 ---
 
-## 🛠️ Texnologiyalar
+## Texnologiyalar
 
 - [Angular 20](https://angular.io/)
 - TypeScript
