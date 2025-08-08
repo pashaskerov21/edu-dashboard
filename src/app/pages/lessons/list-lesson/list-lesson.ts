@@ -1,9 +1,9 @@
 import { NgClass, NgFor, NgIf } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import Swal from 'sweetalert2';
 import { LessonService } from '../lesson.service';
-import { RouterLink, RouterModule } from '@angular/router';
+import { Router, RouterLink, RouterModule } from '@angular/router';
 import { Lesson } from '../lesson.model';
 
 @Component({
@@ -12,12 +12,14 @@ import { Lesson } from '../lesson.model';
   templateUrl: './list-lesson.html',
   styleUrl: './list-lesson.scss'
 })
-export class ListLesson {
+export class ListLesson implements OnInit {
   lessons: Lesson[] = [];
-  constructor( public lessonService: LessonService, private translate: TranslateService) { 
+  constructor( public lessonService: LessonService, private translate: TranslateService, public router: Router) { 
+    
+  }
+  ngOnInit(): void {
     this.lessons = this.lessonService.getLessons();
   }
-  
   
   // lessons = this.lessonService.getLessons();
   selectedRowIDs: number[] = [];
@@ -70,6 +72,7 @@ export class ListLesson {
           this.translate.instant('delete-success-message'),
           'success'
         );
+        this.ngOnInit();
       }
     });
   }
@@ -88,6 +91,7 @@ export class ListLesson {
       if (result.isConfirmed) {
         this.lessonService.deleteLesson(id);
         Swal.fire(this.translate.instant('congrulations'), this.translate.instant('delete-success-message'), 'success');
+        this.ngOnInit();
       }
     });
   }

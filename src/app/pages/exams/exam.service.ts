@@ -1,8 +1,10 @@
 import { Injectable, signal } from "@angular/core";
 import { Exam } from "./exam.model";
 
+
 @Injectable({ providedIn: 'root' })
 export class ExamService {
+
     private examsSignal = signal<Exam[]>([
         {
             id: 1,
@@ -15,7 +17,9 @@ export class ExamService {
         }
     ]);
 
-
+    getRealLength(): number{
+        return this.examsSignal().length;
+    }
     getExams(): Exam[] {
         return this.examsSignal().filter(exam => exam.delete === 0);
     }
@@ -28,6 +32,26 @@ export class ExamService {
                 exam.id === id ? { ...exam, delete: 1 } : exam
             )
         );
+    }
+    restoreExam(id: number) {
+        const deletedExam = this.getDeletedExams().find(exam => exam.id === id);
+        if (deletedExam) {
+            const isHave = this.getExams().find(exam =>
+                exam.lessonCode === deletedExam.lessonCode &&
+                exam.studentId === deletedExam.studentId &&
+                exam.date && deletedExam.date
+            );
+            if (isHave) {
+                return false;
+            }
+            this.examsSignal.update(exams =>
+                exams.map(exam =>
+                    exam.id === id ? { ...exam, delete: 0 } : exam
+                )
+            );
+            return true
+        }
+        return false;
     }
     addExam(newExam: Exam) {
         this.examsSignal.update(exams => [
@@ -64,4 +88,6 @@ export class ExamService {
             )
         )
     }
+
+    
 }

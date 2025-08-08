@@ -166,8 +166,11 @@ section {
     width: 100%;
     max-width: 100%;
     overflow-x: auto;
+    @include column-start;
 
-    @include row-start;
+    .table-title{
+        color: light-dark($txt-color-3, $txt-color-1);
+    }
 
     table {
         width: 100%;
@@ -279,6 +282,11 @@ section {
             color: #FA5C7C !important;
         }
     }
+    .recover-btn{
+        &:hover i {
+            color: #0ACF97 !important;
+        }
+    }
 
     .check-btn {
         &:hover i {
@@ -384,4 +392,14 @@ form.general-form {
         font-size: 14px;
         margin-top: 3px;
     }
+}
+
+span.highlight{
+    color: #0ACF97 !important;
+}
+
+.no-result-message{
+    display: none;
+    margin: 30px 0;
+    color: light-dark($txt-color-3, $txt-color-2);
 }

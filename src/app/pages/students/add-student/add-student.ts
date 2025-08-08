@@ -28,10 +28,9 @@ export class AddStudent {
     const isValid = this.firstname.trim().length >= 2 && this.lastname.trim().length >= 2 && !!this.class && this.class > 1 && this.class < 99;
     if (!isValid) return;
 
-    const currentStudents = this.studentService.getStudents();
+    // const currentStudents = this.studentService.getStudents();
 
-    const lastId = currentStudents.length > 0 ? currentStudents[currentStudents.length - 1].id : 0;
-    const newId = lastId + 1;
+    const newId = this.studentService.getRealLength() + 1;
     const slug = `${this.firstname.toLocaleLowerCase().trim().replace(/\s+/g, '-')}-${this.lastname.toLocaleLowerCase().trim().replace(/\s+/g, '-')}-${newId}`;
 
     const newStudent: Student = {

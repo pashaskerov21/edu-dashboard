@@ -10,9 +10,9 @@
             <button class="mobile-search-button navbar-icon d-md-none" (click)="toggleMobileSearch()"><i
                     class="fa-solid fa-magnifying-glass"></i>
             </button>
-            <form class="search-form" [ngClass]="isMobileSearchOpen ? 'opened' :''">
+            <form class="search-form" (ngSubmit)="onSearch()" [ngClass]="isMobileSearchOpen ? 'opened' :''">
                 <i class="fa-solid fa-magnifying-glass before-icon navbar-icon"></i>
-                <input type="text" placeholder="{{'search' | translate}}...">
+                <input type="text" placeholder="{{'search' | translate}}..." name="keyword" [(ngModel)]="keyword">
                 <button type="submit">
                     <i class="fa-solid fa-magnifying-glass navbar-icon d-md-none"></i>
                     <span>{{'search' | translate}}</span>

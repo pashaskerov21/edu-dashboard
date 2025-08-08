@@ -44,7 +44,7 @@
                 <div class="invalid-feedback" [class.d-block]="submitted && (!studentId)">
                     {{'invalid-select-message' | translate}}
                 </div>
-                <a routerLink="/students" class="add-button btn-hidde"
+                <a routerLink="/students" class="add-button btn-hidden"
                     [class.d-block]="studentService.getStudents().length === 0">{{'add' | translate}}</a>
             </div>
 

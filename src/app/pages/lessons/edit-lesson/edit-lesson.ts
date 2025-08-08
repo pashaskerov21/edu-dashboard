@@ -63,12 +63,15 @@ export class EditLesson {
     };
 
     const newSlug = `${updatedLesson.name.toLowerCase().replace(/\s+/g, '-')}-${this.lesson.code}${updatedLesson.class}`;
-    const existing = this.lessonService.getLessons().find(l =>
-      (l.slug === newSlug || (l.class === updatedLesson.class)) &&
-      l.id !== this.lesson.id
+    const currentLessons = this.lessonService.getLessons();
+    const isDuplicate = currentLessons.some(lesson =>
+      lesson.name.toLocaleLowerCase().trim() === this.name.toLocaleLowerCase().trim() &&
+      lesson.teacherFirstName.toLocaleLowerCase().trim() === this.teacherFirstName.toLocaleLowerCase().trim() &&
+      lesson.teacherLastName.toLocaleLowerCase().trim() === this.teacherLastName.toLocaleLowerCase().trim() &&
+      lesson.class === this.classNumber
     );
 
-    if (existing) {
+    if (isDuplicate) {
       Swal.fire({
         icon: 'warning',
         title: this.translate.instant('attention'),

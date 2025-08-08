@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { ExamService } from '../exam.service';
@@ -15,7 +15,7 @@ import { Exam } from '../exam.model';
   templateUrl: './list-exam.html',
   styleUrl: './list-exam.scss'
 })
-export class ListExam {
+export class ListExam implements OnInit {
   exams: Exam[] = [];
   constructor(
     public examService: ExamService,
@@ -23,6 +23,10 @@ export class ListExam {
     public studentService: StudentService,
     private translate: TranslateService
   ) {
+    
+  }
+
+  ngOnInit(): void {
     this.exams = this.examService.getExams();
   }
 
@@ -91,6 +95,7 @@ export class ListExam {
           this.translate.instant('delete-success-message'),
           'success'
         );
+        this.ngOnInit();
       }
     });
   }
@@ -109,6 +114,7 @@ export class ListExam {
       if (result.isConfirmed) {
         this.examService.deleteExam(id);
         Swal.fire(this.translate.instant('congrulations'), this.translate.instant('delete-success-message'), 'success');
+        this.ngOnInit();
       }
     });
   }

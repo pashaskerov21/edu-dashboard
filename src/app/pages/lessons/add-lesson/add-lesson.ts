@@ -32,8 +32,10 @@ export class AddLesson {
 
     const currentLessons = this.lessonService.getLessons();
     const isDuplicate = currentLessons.some(lesson =>
-
-      lesson.name.toLocaleLowerCase().trim() === this.name.toLocaleLowerCase().trim() && lesson.class === this.classNumber
+      lesson.name.toLocaleLowerCase().trim() === this.name.toLocaleLowerCase().trim() && 
+      lesson.teacherFirstName.toLocaleLowerCase().trim() === this.teacherFirstName.toLocaleLowerCase().trim() && 
+      lesson.teacherLastName.toLocaleLowerCase().trim() === this.teacherLastName.toLocaleLowerCase().trim() && 
+      lesson.class === this.classNumber
     );
 
     if (isDuplicate) {
@@ -45,8 +47,8 @@ export class AddLesson {
       return;
     }
 
-    const lastId = currentLessons.length > 0 ? currentLessons[currentLessons.length - 1].id : 0;
-    const newId = lastId + 1;
+    
+    const newId = this.lessonService.getRealLength() + 1;
     const newCode = this.lessonService.generateUniqueCode();
     const slug = `${this.name.trim().toLocaleLowerCase().replace(/\s+/g, '-')}-${newCode}${this.classNumber}`;
 

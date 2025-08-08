@@ -1,4 +1,5 @@
-<div class="table-wrapper mb-5" [class.d-none]="deletedLessons.length === 0">
+<h3 class="no-result-message" [class.d-block]="noResult">{{'no-result-message' | translate}}</h3>
+<div class="table-wrapper mb-5" [class.d-none]="lessonResults.length === 0">
     <h4 class="table-title mb-3">{{'lessons' | translate }}</h4>
     <table class="table table-striped table-centered mb-0">
         <thead>
@@ -12,18 +13,19 @@
             </tr>
         </thead>
         <tbody>
-            @for (lesson of deletedLessons; track lesson.id) {
+            @for (lesson of lessonResults; track lesson.id) {
             <tr>
-                <td>{{ deletedLessons.indexOf(lesson) + 1 }}</td>
-                <td>{{lesson.name}}</td>
-                <td>{{lesson.code}}</td>
+                <td>{{ lessonResults.indexOf(lesson) + 1 }}</td>
+                <td [innerHTML]="highlightMatch(lesson.name)"></td>
+                <td [innerHTML]="highlightMatch(lesson.code)"></td>
                 <td>{{lesson.class}}</td>
-                <td>{{lesson.teacherFirstName}} {{lesson.teacherLastName}}</td>
+                <td>
+                    <span [innerHTML]="highlightMatch(lesson.teacherFirstName)"></span>&nbsp;<span
+                        [innerHTML]="highlightMatch(lesson.teacherLastName)"></span>
+                </td>
                 <td>
                     <div class="operations">
-                        <button class="recover-btn" (click)="restoreLessonFunction(lesson.id)">
-                            <i class="fa-solid fa-arrow-rotate-left"></i>
-                        </button>
+                        <a [routerLink]="['/lessons',lesson.slug]" class="edit-btn"><i class="fa-solid fa-edit"></i></a>
                     </div>
                 </td>
             </tr>
@@ -31,8 +33,7 @@
         </tbody>
     </table>
 </div>
-
-<div class="table-wrapper mb-5" [class.d-none]="deletedStudents.length === 0">
+<div class="table-wrapper mb-5" [class.d-none]="studentResults.length === 0">
     <h4 class="table-title mb-3">{{'students' | translate }}</h4>
     <table class="table table-striped table-centered mb-0">
         <thead>
@@ -44,16 +45,18 @@
             </tr>
         </thead>
         <tbody>
-            @for (student of deletedStudents; track student.id) {
+            @for (student of studentResults; track student.id) {
             <tr>
-                <td>{{deletedStudents.indexOf(student)+1}}</td>
-                <td>{{student.firstname}} {{student.lastname}}</td>
+                <td>{{studentResults.indexOf(student)+1}}</td>
+                <td>
+                    <span [innerHTML]="highlightMatch(student.firstname)"></span>&nbsp;<span
+                        [innerHTML]="highlightMatch(student.lastname)"></span>
+                </td>
                 <td>{{student.class}}</td>
                 <td>
                     <div class="operations">
-                        <button class="recover-btn" (click)="restoreStudenFunction(student.id)">
-                            <i class="fa-solid fa-arrow-rotate-left"></i>
-                        </button>
+                        <a [routerLink]="['/students',student.slug]" class="edit-btn"><i
+                                class="fa-solid fa-edit"></i></a>
                     </div>
                 </td>
             </tr>
@@ -62,7 +65,7 @@
     </table>
 </div>
 
-<div class="table-wrapper mb-5" [class.d-none]="deletedExams.length === 0">
+<div class="table-wrapper mb-5" [class.d-none]="examResults.length === 0">
     <h4 class="table-title mb-3">{{'exams' | translate }}</h4>
     <table class="table table-striped table-centered mb-0">
         <thead>
@@ -76,19 +79,20 @@
             </tr>
         </thead>
         <tbody>
-            @for(exam of deletedExams; track exam.id){
+            @for(exam of examResults; track exam.id){
             <tr>
-                <td>{{deletedExams.indexOf(exam) + 1}}</td>
-                <td>{{getCurrentLesson(exam.lessonCode)?.name}}</td>
-                <td>{{getCurrentStudent(exam.studentId)?.firstname}} {{getCurrentStudent(exam.studentId)?.lastname}}
+                <td>{{examResults.indexOf(exam) + 1}}</td>
+                <td [innerHTML]="highlightMatch(getCurrentLesson(exam.lessonCode)?.name ?? '')"></td>
+                <td>
+                    <span
+                        [innerHTML]="highlightMatch(getCurrentStudent(exam.studentId)?.firstname ?? '')"></span>&nbsp;<span
+                        [innerHTML]="highlightMatch(getCurrentStudent(exam.studentId)?.lastname ?? '')"></span>
                 </td>
                 <td>{{exam.date}}</td>
                 <td>{{exam.score}}</td>
                 <td>
                     <div class="operations">
-                        <button class="recover-btn" (click)="restoreExamFunction(exam.id)">
-                            <i class="fa-solid fa-arrow-rotate-left"></i>
-                        </button>
+                        <a [routerLink]="['/exams',exam.slug]" class="edit-btn"><i class="fa-solid fa-edit"></i></a>
                     </div>
                 </td>
             </tr>

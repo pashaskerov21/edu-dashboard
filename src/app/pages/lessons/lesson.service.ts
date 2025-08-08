@@ -71,6 +71,9 @@ export class LessonService {
 
     private examService = inject(ExamService);
 
+    getRealLength(): number{
+        return this.lessonsSignal().length;
+    }
     getLessons(): Lesson[] {
         return this.lessonsSignal().filter(lesson => lesson.delete === 0);
     }
@@ -89,6 +92,27 @@ export class LessonService {
 
             this.examService.deleteExamsByLessonCode(deletedLesson.code);
         }
+    }
+    restoreLesson(id: number) {
+        const deletedLesson = this.getDeletedLessons().find(lesson => lesson.id === id);
+        if (deletedLesson) {
+            const isHave = this.getLessons().find(lesson => 
+                lesson.name.toLocaleLowerCase().trim() === deletedLesson.name.toLocaleLowerCase().trim() &&
+                lesson.teacherFirstName.toLocaleLowerCase().trim() === deletedLesson.teacherFirstName.toLocaleLowerCase().trim() &&
+                lesson.teacherLastName.toLocaleLowerCase().trim() === deletedLesson.teacherLastName.toLocaleLowerCase().trim() &&
+                lesson.class && deletedLesson.class
+            );
+            if(isHave){
+                return false;
+            }
+            this.lessonsSignal.update(lessons =>
+                lessons.map(lesson =>
+                    lesson.id === id ? { ...lesson, delete: 0 } : lesson
+                )
+            );
+            return true
+        }
+        return false;
     }
 
     addLesson(newLesson: Lesson) {

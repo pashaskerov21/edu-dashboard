@@ -13,6 +13,7 @@ import { EditStudent } from './pages/students/edit-student/edit-student';
 import { AddExam } from './pages/exams/add-exam/add-exam';
 import { EditExam } from './pages/exams/edit-exam/edit-exam';
 import { ListExam } from './pages/exams/list-exam/list-exam';
+import { Search } from './pages/search/search';
 
 export const routes: Routes = [
   {
@@ -90,6 +91,11 @@ export const routes: Routes = [
     path: 'deleted',
     component: Deleted,
     data: { breadcrumb: 'deleted' },
+  },
+  {
+    path: 'search',
+    component: Search,
+    data: {breadcrumb: 'search'},
   },
   {
     path: '**',

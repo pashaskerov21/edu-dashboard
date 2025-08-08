@@ -44,5 +44,8 @@
     "no-lesson": "No lesson",
     "no-student": "No student",
     "select": "Select",
-    "exam-class-warning-message": "The selected course and the student's grades must have the same value."
+    "exam-class-warning-message": "The selected course and the student's grades must have the same value.",
+    "restore-success-message": "Data successfully restored",
+    "restore-warning-message": "This information is available and cannot be restored.",
+    "no-result-message": "No results found for your search."
 }

@@ -57,7 +57,7 @@ export class AddExam {
     const isDuplicate = currentExams.some(exam =>
       exam.lessonCode === this.lessonCode && this.studentId &&
       +exam.studentId === +this.studentId &&
-      exam.date === this.date
+      exam.date === this.formatDate(this.date)
     );
     if (isDuplicate) {
       Swal.fire({
@@ -77,8 +77,7 @@ export class AddExam {
       return;
     }
 
-    const lastId = currentExams.length > 0 ? currentExams[currentExams.length - 1].id : 0;
-    const newId = lastId + 1;
+    const newId = this.examService.getRealLength() + 1;
     const slug = `${currentStudent?.firstname.toLocaleLowerCase().trim().replace(/\s+/g, '-')}-${currentStudent?.lastname.toLocaleLowerCase().trim().replace(/\s+/g, '-')}-${currentLesson?.name.toLocaleLowerCase().trim().replace(/\s+/g, '-')}-${newId}`;
 
     const newExam: Exam = {

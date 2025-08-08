@@ -44,5 +44,8 @@
     "no-lesson": "Dərs yoxdur",
     "no-student": "Şagird yoxdur",
     "select": "Seçin",
-    "exam-class-warning-message": "Seçilən dərs və şagirdin sinifləri eyni dəyərə malik olmalıdır"
+    "exam-class-warning-message": "Seçilən dərs və şagirdin sinifləri eyni dəyərə malik olmalıdır",
+    "restore-success-message": "Məlumat uğurla bərpa edildi",
+    "restore-warning-message": "Bu məlumat mövcuddur və bərpa edilə bilməz",
+    "no-result-message": "Axtarışa uyğun nəticə tapılmadı"
 }

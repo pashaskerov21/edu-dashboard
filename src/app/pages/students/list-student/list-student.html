@@ -9,7 +9,7 @@
         {{"delete-selected" | translate}}
     </button>
 </div>
-<div class="table-wrapper">
+<div class="table-wrapper" [class.d-none]="students.length === 0">
     <table class="table table-striped table-centered mb-0">
         <thead>
             <tr>

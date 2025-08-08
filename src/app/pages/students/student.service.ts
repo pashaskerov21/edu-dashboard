@@ -65,6 +65,10 @@ export class StudentService {
 
     private examService = inject(ExamService);
 
+
+    getRealLength(): number {
+        return this.studentsSignal().length;
+    }
     getStudents(): Student[] {
         return this.studentsSignal().filter(student => student.delete === 0);
     }
@@ -83,6 +87,26 @@ export class StudentService {
 
             this.examService.deleteExamsByStudentId(deletedStudent.id);
         }
+    }
+    restoreStudent(id: number) {
+        const deletedStudent = this.getDeletedStudents().find(student => student.id === id);
+        if (deletedStudent) {
+            const isHave = this.getStudents().find(student =>
+                student.firstname.toLocaleLowerCase().trim() === deletedStudent.firstname.toLocaleLowerCase().trim() &&
+                student.lastname.toLocaleLowerCase().trim() === deletedStudent.lastname.toLocaleLowerCase().trim() &&
+                student.class && deletedStudent.class
+            );
+            if (isHave) {
+                return false;
+            }
+            this.studentsSignal.update(students =>
+                students.map(student =>
+                    student.id === id ? { ...student, delete: 0 } : student
+                )
+            );
+            return true
+        }
+        return false;
     }
 
     addStudent(newStudent: Student) {

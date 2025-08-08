@@ -1,5 +1,5 @@
 import { NgClass, NgFor, NgIf } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { StudentService } from '../student.service';
@@ -12,9 +12,13 @@ import { Student } from '../student.model';
   templateUrl: './list-student.html',
   styleUrl: './list-student.scss'
 })
-export class ListStudent {
+export class ListStudent implements OnInit {
   students: Student[] = [];
   constructor(public studentService: StudentService, private translate: TranslateService) {
+    
+  }
+
+  ngOnInit(): void {
     this.students = this.studentService.getStudents();
   }
 
@@ -67,6 +71,7 @@ export class ListStudent {
           this.translate.instant('delete-success-message'),
           'success'
         );
+        this.ngOnInit();
       }
     });
   }
@@ -85,6 +90,7 @@ export class ListStudent {
       if (result.isConfirmed) {
         this.studentService.deleteStudent(id);
         Swal.fire(this.translate.instant('congrulations'), this.translate.instant('delete-success-message'), 'success');
+        this.ngOnInit();
       }
     });
   }
