@@ -20,11 +20,11 @@ Hər biri üçün CRUD əməliyyatları həyata keçirilə bilər (Əlavə et, Y
 ## 🚀 Əsas Funksionallıqlar
 
 - Məlumatların siyahı şəklində göstərilməsi
-- Yeni məlumatların əlavə olunması
-- Mövcud məlumatların redaktəsi
-- Tək və ya toplu silinmə
-- Silinmiş məlumatların bərpa edilməsi
-- Bütün məlumatlarda funksional axtarış sistemi
+- Yeni məlumatların əlavə edilməsi (Create)
+- Mövcud məlumatların redaktəsi (Update)
+- Məlumatların silinməsi — tək və ya toplu (Delete)
+- Silinmiş məlumatların bərpası (Recovery)
+- Axtarış funksiyası (bütün məlumatlar üzrə)
 
 ---
 
