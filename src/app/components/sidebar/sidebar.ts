@@ -12,8 +12,12 @@ import { TranslateModule } from '@ngx-translate/core';
 export class Sidebar {
   @Input() isOpen: boolean = false;
   @Output() toggleSidebar = new EventEmitter<void>();
+  @Output() toggleSidebarWithLink = new EventEmitter<void>();
 
   onToggleSidebar() {
     this.toggleSidebar.emit();
+  }
+  onToggleSidebarWithLink(){
+    this.toggleSidebarWithLink.emit();
   }
 }

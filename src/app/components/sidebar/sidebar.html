@@ -1,6 +1,6 @@
 <aside [ngClass]="isOpen ? 'opened' : 'closed'">
     <div class="aside-header">
-        <a routerLink="" class="logo" (click)="onToggleSidebar()">
+        <a routerLink="" class="logo" (click)="onToggleSidebarWithLink()">
             <img src="logo-sm.png" alt="logo">
             <span class="sidebar-hide-item">{{ 'dashboard' | translate }}</span>
         </a>
@@ -9,19 +9,19 @@
         <div class="navigation">
             <div class="navigation-title sidebar-hide-item">{{'navigation' | translate}}</div>
             <div class="navigation-links">
-                <a routerLink="/lessons" (click)="onToggleSidebar()">
+                <a routerLink="/lessons" (click)="onToggleSidebarWithLink()">
                     <i class="fa-solid fa-book"></i>
                     <span class="sidebar-hide-item">{{'lessons' | translate}}</span>
                 </a>
-                <a routerLink="/students" (click)="onToggleSidebar()">
+                <a routerLink="/students" (click)="onToggleSidebarWithLink()">
                     <i class="fa-solid fa-users"></i>
                     <span class="sidebar-hide-item">{{'students' | translate}}</span>
                 </a>
-                <a routerLink="/exams" (click)="onToggleSidebar()">
+                <a routerLink="/exams" (click)="onToggleSidebarWithLink()">
                     <i class="fa-solid fa-clipboard"></i>
                     <span class="sidebar-hide-item">{{'exams' | translate}}</span>
                 </a>
-                <a routerLink="/deleted" (click)="onToggleSidebar()">
+                <a routerLink="/deleted" (click)="onToggleSidebarWithLink()">
                     <i class="fa-solid fa-trash"></i>
                     <span class="sidebar-hide-item">{{'deleted' | translate}}</span>
                 </a>

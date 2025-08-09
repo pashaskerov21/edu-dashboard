@@ -58,6 +58,7 @@ export class App {
   toggleSidebar() {
     this.isSidebarOpen = !this.isSidebarOpen;
   }
+  
 
   @HostListener('window:resize')
   onResize() {
@@ -69,6 +70,12 @@ export class App {
   private checkSidebarState() {
     if (this.isBrowser) {
       this.isSidebarOpen = window.innerWidth > 992;
+    }
+  }
+
+  toggleSidebarWithLink(){
+    if(this.isBrowser && window.innerWidth < 992){
+      this.isSidebarOpen = false;
     }
   }
 
