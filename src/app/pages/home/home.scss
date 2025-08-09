@@ -5,9 +5,10 @@
 .home-wrapper {
     width: 100%;
     @include column-center;
+    gap: 20px;
 
     @media (min-width: 768px) {
-        @include row-center;
+        @include row-between;
     }
 
     .link-item {
@@ -16,8 +17,11 @@
         @include column-center;
         gap: 15px;
         background-color: light-dark(#ffffff, #37404A);
-        border: 1px solid light-dark($txt-color-3, $txt-color-1);
-
+        border-bottom: 6px solid $primary-color;
+        border-radius: 10px;
+        @media (min-width: 768px){
+            width: 30%;
+        }
         i,
         span {
             color: light-dark($txt-color-3, $txt-color-1);

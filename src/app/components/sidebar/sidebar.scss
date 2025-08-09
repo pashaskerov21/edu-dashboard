@@ -4,14 +4,16 @@
 
 aside {
     width: 100%;
-    min-width: 80px;
-    max-width: 80px;
+    min-width: 50px;
+    max-width: 50px;
     height: 100vh;
     overflow: hidden;
     background-color: $bg-color-1;
-    padding: 25px;
+    padding: 15px 8px;
     transition: all 0.5s;
-    // box-shadow: 0 0 10px light-dark($black-1, $white-1);
+    position: relative;
+
+
 
     .sidebar-hide-item {
         display: none;
@@ -21,7 +23,7 @@ aside {
 
     .aside-header {
         width: 100%;
-        @include row-center;
+        @include row-justify-start;
 
         .logo {
             @include row-start;
@@ -35,6 +37,8 @@ aside {
                 margin-top: 4px;
             }
         }
+
+
     }
 
     .aside-body {
@@ -58,6 +62,7 @@ aside {
                 gap: 25px;
 
                 a {
+                    width: 100%;
                     @include row-center;
                     gap: 15px;
                     color: $txt-color-1;
@@ -82,6 +87,17 @@ aside {
         min-width: 260px;
         max-width: 260px;
         z-index: 999;
+        padding: 25px;
+
+        .aside-body {
+            .navigation {
+                &-links {
+                    a {
+                        justify-content: flex-start;
+                    }
+                }
+            }
+        }
 
         @media (min-width: 768px) {
             position: relative;
@@ -93,8 +109,15 @@ aside {
     }
 
     &.closed {
-        min-width: 80px;
-        max-width: 80px;
+        min-width: 50px;
+        max-width: 50px;
+        padding: 15px 8px;
+
+        // @media (min-width: 576px) {
+        //     min-width: 80px;
+        //     max-width: 80px;
+        //     padding: 25px;
+        // }
 
         .sidebar-hide-item {
             display: none;
@@ -102,7 +125,7 @@ aside {
 
     }
 
-    @media (min-width: 768px) {
+    @media (min-width: 992px) {
         min-width: 260px;
         max-width: 260px;
 

@@ -128,12 +128,16 @@ section {
     .right-wrapper {
         display: flex;
         flex-direction: column;
-        width: calc(100% - 80px);
+        width: calc(100% - 50px);
         height: 100vh;
         overflow: hidden;
+        @media (min-width: 576px){
+            width: calc(100% - 80px);
+        }
         &.fullw{
             width: 100%;
         }
+        
 
         .content-wrapper {
             flex: 1;
@@ -329,6 +333,7 @@ form.general-form {
             background-color: light-dark(#ffffff, #404954);
             border: 1px solid light-dark(#e5e8eb, #464f5b);
             color: light-dark($txt-color-3, $txt-color-2);
+            border-bottom: 3px solid $primary-color;
 
             &::placeholder {
                 color: light-dark($txt-color-3, $txt-color-2);
@@ -362,6 +367,7 @@ form.general-form {
             background-color: light-dark(#ffffff, #404954);
             border: 1px solid light-dark(#e5e8eb, #464f5b);
             color: light-dark($txt-color-3, $txt-color-2);
+            border-bottom: 3px solid $primary-color;
 
             -webkit-appearance: none;
             -moz-appearance: none;

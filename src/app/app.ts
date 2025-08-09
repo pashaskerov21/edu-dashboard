@@ -68,7 +68,7 @@ export class App {
 
   private checkSidebarState() {
     if (this.isBrowser) {
-      this.isSidebarOpen = window.innerWidth > 768;
+      this.isSidebarOpen = window.innerWidth > 992;
     }
   }
 
