@@ -340,7 +340,10 @@ form.general-form {
             }
 
             &.is-invalid {
-                border: 1px solid #FA5C7C;
+                border-bottom-color: #FA5C7C;
+            }
+            &.is-valid {
+                border-bottom-color: #0ACF97;
             }
         }
 
@@ -378,7 +381,10 @@ form.general-form {
                 border-color: light-dark(#e5e8eb, #464f5b);
             }
             &.is-invalid {
-                border: 1px solid #FA5C7C;
+                border-bottom-color: #FA5C7C;
+            }
+            &.is-valid {
+                border-bottom-color: #0ACF97;
             }
 
 

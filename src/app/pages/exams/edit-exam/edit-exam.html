@@ -6,7 +6,7 @@
                 <div class="select-wrapper">
                     <i class="fa-solid fa-chevron-down"></i>
                     <select id="lessonCode" [(ngModel)]="lessonCode" name="lessonCode"
-                        [class.is-invalid]="submitted && !lessonCode">
+                        [class.is-invalid]="submitted && !lessonCode" [class.is-valid]="lessonCode">
 
                         @for (lesson of lessons; track lesson.id) {
                         <option value="{{lesson.code}}">
@@ -25,7 +25,7 @@
                 <div class="select-wrapper">
                     <i class="fa-solid fa-chevron-down"></i>
                     <select id="studentId" [(ngModel)]="studentId" name="studentId"
-                        [class.is-invalid]="submitted && !studentId">
+                        [class.is-invalid]="submitted && !studentId" [class.is-valid]="studentId">
 
                         @for (student of students; track student.id) {
                         <option value="{{student.id}}">
@@ -41,7 +41,7 @@
 
             <div class="form-item mb-4">
                 <label for="date">{{"date" | translate}}</label>
-                <input type="datetime-local" id="date" [(ngModel)]="date" name="date" [class.is-invalid]="submitted && (!date)">
+                <input type="datetime-local" id="date" [(ngModel)]="date" name="date" [class.is-invalid]="submitted && (!date)" [class.is-valid]="date">
                 <div class="invalid-feedback" [class.d-block]="submitted && (!date)">
                     {{'invalid-input-message' | translate}}
                 </div>
@@ -49,9 +49,9 @@
 
             <div class="form-item mb-4">
                 <label for="score">{{"score" | translate}}</label>
-                <input type="number" id="score" min="1" max="9" [(ngModel)]="score" name="score"
-                    [class.is-invalid]="submitted && (!score || score < 1 || score > 9)">
-                <div class="invalid-feedback" [class.d-block]="submitted && (!score || score < 1 || score > 9)">
+                <input type="number" id="score" min="0" max="9" [(ngModel)]="score" name="score"
+                    [class.is-invalid]="submitted && (score === null || score === undefined || score < 0 || score > 9)" [class.is-valid]="score !== null && score !== undefined && score >= 0 && score < 10">
+                <div class="invalid-feedback" [class.d-block]="submitted && (score === null || score === undefined || score < 0 || score > 9)" >
                     {{'invalid-input-message' | translate}} (1-9)
                 </div>
             </div>

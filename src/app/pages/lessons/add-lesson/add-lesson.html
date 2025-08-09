@@ -4,7 +4,7 @@
             <div class="form-item mb-4">
                 <label for="lesson-name">{{"lesson-name" | translate}}</label>
                 <input type="text" id="lesson-name" maxlength="30" [(ngModel)]="name" name="name"
-                    [class.is-invalid]="submitted && name.trim().length < 2">
+                    [class.is-invalid]="submitted && name.trim().length < 2" [class.is-valid]="name.trim().length > 2">
                 <div class="invalid-feedback" [class.d-block]="submitted && name.trim().length < 2">
                     {{'invalid-input-message'|translate}} ({{'min-2-simvol' | translate}})
                 </div>
@@ -12,7 +12,7 @@
             <div class="form-item mb-4">
                 <label for="class">{{"class" | translate}}</label>
                 <input type="number" id="class" min="1" max="99" [(ngModel)]="classNumber" name="class"
-                    [class.is-invalid]="submitted && (!classNumber || classNumber < 1 || classNumber > 99)">
+                    [class.is-invalid]="submitted && (!classNumber || classNumber < 1 || classNumber > 99)" [class.is-valid]="classNumber && classNumber > 0 && classNumber < 99">
                 <div class="invalid-feedback"
                     [class.d-block]="submitted && (!classNumber || classNumber < 1 || classNumber > 99)">
                     {{'invalid-input-message' | translate}} (1-99)
@@ -21,7 +21,7 @@
             <div class="form-item mb-4">
                 <label for="teacher-firstname">{{"teacher-firstname" | translate}}</label>
                 <input type="text" id="teacher-firstname" maxlength="20" [(ngModel)]="teacherFirstName" name="firstName"
-                    [class.is-invalid]="submitted && teacherFirstName.trim().length < 2">
+                    [class.is-invalid]="submitted && teacherFirstName.trim().length < 2" [class.is-valid]="teacherFirstName.trim().length > 2">
                 <div class="invalid-feedback" [class.d-block]="submitted && teacherFirstName.trim().length < 2">
                     {{'invalid-input-message' | translate}} ({{'min-2-simvol' | translate}})
                 </div>
@@ -29,7 +29,7 @@
             <div class="form-item mb-5">
                 <label for="teacher-lastname">{{"teacher-lastname" | translate}}</label>
                 <input type="text" id="teacher-lastname" maxlength="20" [(ngModel)]="teacherLastName" name="lastName"
-                    [class.is-invalid]="submitted && teacherLastName.trim().length < 2">
+                    [class.is-invalid]="submitted && teacherLastName.trim().length < 2" [class.is-valid]="teacherLastName.trim().length > 2">
                 <div class="invalid-feedback" [class.d-block]="submitted && teacherLastName.trim().length < 2">
                     {{'invalid-input-message' | translate}} ({{'min-2-simvol' | translate}})
                 </div>

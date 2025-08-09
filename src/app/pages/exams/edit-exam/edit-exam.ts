@@ -66,7 +66,7 @@ export class EditExam {
     event.preventDefault();
     this.submitted = true;
 
-    const isValid = this.lessonCode && this.studentId && this.date && this.score && this.score > 0 && this.score < 10;
+    const isValid = this.lessonCode && this.studentId && this.date && this.score !== undefined && this.score !==null && this.score >= 0 && this.score < 10;
     if (!isValid) return;
 
     const updateExam: Omit<Exam, 'id' | 'slug' | 'delete'> = {
