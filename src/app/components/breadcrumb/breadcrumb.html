@@ -1,7 +1,7 @@
 <div class="row content-header">
     <div class="col-12 col-sm-6  d-flex justify-content-start align-items-center p-0 pe-2">
         <h4 class="content-title">
-            {{ breadcrumbs.length > 0 ? (`${breadcrumbs[breadcrumbs.length - 1].label}` | translate) : '' }}
+            {{ breadcrumbs.length > 0 ? breadcrumbs[breadcrumbs.length - 1].label === 'all' ? (`${breadcrumbs[breadcrumbs.length - 2].label}` | translate) : (`${breadcrumbs[breadcrumbs.length - 1].label}` | translate) : '' }}
         </h4>
     </div>
     <div class="col-12 col-sm-6 d-flex justify-content-end align-items-center p-0 ps-2">

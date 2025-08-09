@@ -34,6 +34,7 @@ Hər biri üçün CRUD əməliyyatları həyata keçirilə bilər (Əlavə et, Y
 - Tam çoxdilli dəstək (🇦🇿 Azərbaycan, 🇬🇧 İngilis, 🇷🇺 Rus)
 - Bütün statik mətnlər `JSON` faylları vasitəsilə idarə olunur
 - Dinamik dil dəyişmə funksiyası
+- Yüksək səviyyəli form validasiyası və xəbərdarlıq sistemi
 
 ---
 

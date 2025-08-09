@@ -189,6 +189,9 @@ section {
         tr * {
             background-color: light-dark($bg-color-4, $bg-color-2);
             color: light-dark($txt-color-3, $txt-color-1);
+            i,button,a{
+                background-color: transparent !important;
+            }
         }
     }
 
@@ -196,12 +199,18 @@ section {
         tr:nth-child(odd) * {
             background-color: light-dark(#F6F7FB, #3D4854);
             color: light-dark($txt-color-3, $txt-color-1);
+            i,button,a{
+                background-color: transparent !important;
+            }
         }
 
         tr * {
             background-color: light-dark($bg-color-4, $bg-color-2);
             color: light-dark($txt-color-3, $txt-color-1);
             border: none;
+            i,button,a{
+                background-color: transparent !important;
+            }
         }
 
         tr div {

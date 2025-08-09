@@ -6,25 +6,14 @@ import { Exam } from "./exam.model";
 export class ExamService {
 
     private examsSignal = signal<Exam[]>([
-        {
-            id: 1,
-            lessonCode: 'a3c',
-            studentId: 3,
-            score: 5,
-            date: '2025-08-07T09:00',
-            slug: 'riyaziyyat-ferid-haciyev-1',
-            delete: 0,
-        },
-        {
-            id: 2,
-            lessonCode: 't5g',
-            studentId: 2,
-            score: 4,
-            date: '2025-08-07T11:00',
-            slug: 'kimya-leyla-rzayeva-2',
-            delete: 0,
-        },
-    ]);
+        { id: 1, slug: "elvin-qasımov-riyaziyyat-1", lessonCode: "a3c", studentId: 3, date: "2025-08-05T09:00", score: 5, delete: 0 }, 
+        { id: 3, slug: "aysel-əliyeva-riyaziyyat-3", lessonCode: "a3c", studentId: 4, date: "2025-08-05T09:00", score: 4, delete: 0 }, 
+        { id: 4, slug: "nihat-məmmədov-fizika-4", lessonCode: "v42", studentId: 5, date: "2025-08-06T10:30", score: 5, delete: 0 }, 
+        { id: 5, slug: "mehdi-orucov-fizika-5", lessonCode: "v42", studentId: 6, date: "2025-08-06T10:30", score: 3, delete: 0 }, 
+        { id: 6, slug: "teymur-əliyev-fizika-6", lessonCode: "v42", studentId: 7, date: "2025-08-06T10:30", score: 5, delete: 0 }, 
+        { id: 7, slug: "ceyhun-mehdiyev-fizika-7", lessonCode: "v42", studentId: 8, date: "2025-08-06T10:30", score: 3, delete: 0 }, 
+        { id: 8, slug: "fərid-hacıyev-tarix-8", lessonCode: "r5g", studentId: 1, date: "2025-08-08T11:30", score: 5, delete: 0 }, 
+        { id: 9, slug: "teymur-əliyev-ingilis-dili-9", lessonCode: "gb3", studentId: 7, date: "2025-08-07T08:30", score: 5, delete: 0 }]);
 
     getRealLength(): number {
         return this.examsSignal().length;
