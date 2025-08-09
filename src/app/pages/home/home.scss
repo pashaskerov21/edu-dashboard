@@ -22,12 +22,12 @@
         @media (min-width: 768px){
             width: 30%;
         }
-        i,
         span {
             color: light-dark($txt-color-3, $txt-color-1);
         }
         i{
             font-size: 30px;
+            background-color: #727cf5;
         }
         span{
             &.link-value{
