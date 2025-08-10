@@ -7,6 +7,10 @@
     <button class="delete-select" [class.d-block]="selectedRowIDs.length > 0" (click)="deleteSelected()">
         {{"delete-selected" | translate}}
     </button>
+    <button (click)="toggleDrag()" class="sortable-btn" [class.active]="isDraggingActive"
+        [class.d-block]="lessonService.getLessons().length > 0">
+        {{'sort' | translate}}
+    </button>
 </div>
 <div class="table-wrapper" [class.d-none]="exams.length === 0">
     <table class="table table-striped table-centered mb-0">
@@ -20,10 +24,15 @@
                 <th style="width: 350px;">{{"operations" | translate}}</th>
             </tr>
         </thead>
-        <tbody>
+        <tbody id="tbody"> 
             @for(exam of exams; track exam.id){
             <tr>
-                <td>{{exams.indexOf(exam) + 1}}</td>
+                <td style="display: none;" [class.d-block]="!isDraggingActive">{{ exams.indexOf(exam) + 1 }}</td>
+                <td style="display: none;" [class.d-block]="isDraggingActive">
+                    <button class="sort-btn">
+                        <i class="fa-solid fa-arrows-up-down-left-right"></i>
+                    </button>
+                </td>
                 <td>{{getCurrentLesson(exam.lessonCode)?.name}}</td>
                 <td>{{getCurrentStudent(exam.studentId)?.firstname}} {{getCurrentStudent(exam.studentId)?.lastname}}
                 </td>

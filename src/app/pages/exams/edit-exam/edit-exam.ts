@@ -69,7 +69,7 @@ export class EditExam {
     const isValid = this.lessonCode && this.studentId && this.date && this.score !== undefined && this.score !==null && this.score >= 0 && this.score < 10;
     if (!isValid) return;
 
-    const updateExam: Omit<Exam, 'id' | 'slug' | 'delete'> = {
+    const updateExam: Omit<Exam, 'id' | 'slug' | 'delete' | 'sort'> = {
       lessonCode: this.lessonCode,
       studentId: this.studentId,
       date: this.date,

@@ -8,6 +8,7 @@ import { StudentService } from '../../students/student.service';
 import { Lesson } from '../../lessons/lesson.model';
 import { Student } from '../../students/student.model';
 import { Exam } from '../exam.model';
+import Sortable from 'sortablejs';
 
 @Component({
   selector: 'app-list-exam',
@@ -17,17 +18,55 @@ import { Exam } from '../exam.model';
 })
 export class ListExam implements OnInit {
   exams: Exam[] = [];
+  isDraggingActive = false;
+  sortableInstance: Sortable | null = null;
+
+
   constructor(
     public examService: ExamService,
     public lessonService: LessonService,
     public studentService: StudentService,
     private translate: TranslateService
-  ) {
-
-  }
+  ) { }
 
   ngOnInit(): void {
     this.exams = this.examService.getExams();
+    this.exams.sort((a, b) => (a.sort ?? 0) - (b.sort ?? 0));
+  }
+
+  toggleDrag() {
+    this.isDraggingActive = !this.isDraggingActive;
+
+    const el = document.getElementById('tbody');
+    if (!el) return;
+
+    if (this.isDraggingActive) {
+      Sortable.create(el, {
+        animation: 150,
+        handle: ".sort-btn",
+        onChoose: (evt) => {
+          const btn = evt.item.querySelector('.sort-btn') as HTMLElement;
+          if (btn) btn.classList.add('active');
+        },
+        onUnchoose: (evt) => {
+          const btn = evt.item.querySelector('.sort-btn') as HTMLElement;
+          if (btn) btn.classList.remove('active');
+        },
+        onEnd: (evt) => {
+          const item = this.exams.splice(evt.oldIndex!, 1)[0];
+          this.exams.splice(evt.newIndex!, 0, item);
+
+          this.exams.forEach((exam, index) => {
+            exam.sort = index + 1;
+          })
+        }
+      })
+    } else {
+      if (this.sortableInstance) {
+        this.sortableInstance.destroy();
+        this.sortableInstance = null;
+      }
+    }
   }
 
   getCurrentLesson(code: string): Lesson | null {

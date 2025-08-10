@@ -5,4 +5,5 @@ export interface Student{
     lastname: string,
     class: number,
     delete: 0 | 1,
+    sort: number,
 }

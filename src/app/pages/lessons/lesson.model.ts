@@ -7,4 +7,5 @@ export interface Lesson{
     teacherFirstName: string;
     teacherLastName: string,
     delete: 0 | 1;
+    sort: number,
 }

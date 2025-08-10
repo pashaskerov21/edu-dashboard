@@ -50,7 +50,7 @@ export class EditStudent {
     const isValid = this.firstname.trim().length >= 2 && this.lastname.trim().length >= 2 && !!this.class && this.class > 1 && this.class < 99;
     if (!isValid) return;
 
-    const updateStudent: Omit<Student, 'id' | 'slug' | 'delete'> = {
+    const updateStudent: Omit<Student, 'id' | 'slug' | 'delete' | 'sort'> = {
       firstname: this.firstname.trim(),
       lastname: this.lastname.trim(),
       class: this.class,

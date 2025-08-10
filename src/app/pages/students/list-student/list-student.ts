@@ -5,6 +5,7 @@ import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { StudentService } from '../student.service';
 import Swal from 'sweetalert2';
 import { Student } from '../student.model';
+import Sortable from 'sortablejs';
 
 @Component({
   selector: 'app-list-student',
@@ -14,12 +15,50 @@ import { Student } from '../student.model';
 })
 export class ListStudent implements OnInit {
   students: Student[] = [];
-  constructor(public studentService: StudentService, private translate: TranslateService) {
-    
-  }
+  isDraggingActive = false;
+  sortableInstance: Sortable | null = null;
+
+
+  constructor(public studentService: StudentService, private translate: TranslateService) { }
 
   ngOnInit(): void {
     this.students = this.studentService.getStudents();
+    this.students.sort((a, b) => (a.sort ?? 0) - (b.sort ?? 0));
+  }
+
+  toggleDrag() {
+    this.isDraggingActive = !this.isDraggingActive;
+
+    const el = document.getElementById('tbody');
+    if (!el) return;
+
+    if (this.isDraggingActive) {
+      Sortable.create(el, {
+        animation: 150,
+        handle: ".sort-btn",
+        onChoose: (evt) => {
+          const btn = evt.item.querySelector('.sort-btn') as HTMLElement;
+          if (btn) btn.classList.add('active');
+        },
+        onUnchoose: (evt) => {
+          const btn = evt.item.querySelector('.sort-btn') as HTMLElement;
+          if (btn) btn.classList.remove('active');
+        },
+        onEnd: (evt) => {
+          const item = this.students.splice(evt.oldIndex!, 1)[0];
+          this.students.splice(evt.newIndex!, 0, item);
+
+          this.students.forEach((student, index) => {
+            student.sort = index + 1;
+          })
+        }
+      })
+    } else {
+      if (this.sortableInstance) {
+        this.sortableInstance.destroy();
+        this.sortableInstance = null;
+      }
+    }
   }
 
   selectedRowIDs: number[] = [];

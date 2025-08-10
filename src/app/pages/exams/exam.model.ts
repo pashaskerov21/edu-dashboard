@@ -6,4 +6,5 @@ export interface Exam {
     date: string,
     score: number,
     delete: 0 | 1;
+    sort: number,
 }

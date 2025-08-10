@@ -12,6 +12,7 @@ export class StudentService {
             lastname: "Hacıyev",
             class: 9,
             delete: 0,
+            sort: 1,
         },
         {
             id: 2,
@@ -20,6 +21,7 @@ export class StudentService {
             lastname: "Rzayeva",
             class: 9,
             delete: 0,
+            sort: 2,
         },
         {
             id: 3,
@@ -28,6 +30,7 @@ export class StudentService {
             lastname: "Qasımov",
             class: 10,
             delete: 0,
+            sort: 3,
         },
         {
             id: 4,
@@ -36,6 +39,7 @@ export class StudentService {
             lastname: "Əliyeva",
             class: 10,
             delete: 0,
+            sort: 4,
         },
         {
             id: 5,
@@ -44,6 +48,7 @@ export class StudentService {
             lastname: "Məmmədov",
             class: 11,
             delete: 0,
+            sort: 5,
         },
         {
             id: 6,
@@ -52,6 +57,7 @@ export class StudentService {
             lastname: "Orucov",
             class: 11,
             delete: 0,
+            sort: 6,
         },
         {
             id: 7,
@@ -60,6 +66,7 @@ export class StudentService {
             lastname: "Əliyev",
             class: 11,
             delete: 0,
+            sort: 7,
         },
         {
             id: 8,
@@ -68,6 +75,7 @@ export class StudentService {
             lastname: "Mehdiyev",
             class: 11,
             delete: 0,
+            sort: 8,
         },
     ]);
 
@@ -125,7 +133,7 @@ export class StudentService {
             }
         ])
     }
-    updateStudent(id: number, slug: string, updated: Omit<Student, 'id' | 'slug' | 'delete'>) {
+    updateStudent(id: number, slug: string, updated: Omit<Student, 'id' | 'slug' | 'delete' | 'sort'>) {
         this.studentsSignal.update(students =>
             students.map(student =>
                 student.id === id ? { ...student, ...updated, slug: slug } : student

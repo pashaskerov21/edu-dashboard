@@ -15,6 +15,7 @@ export class LessonService {
             teacherFirstName: 'Aqil',
             teacherLastName: 'Əliyev',
             delete: 0,
+            sort: 1,
         },
         {
             id: 2,
@@ -25,6 +26,7 @@ export class LessonService {
             teacherFirstName: 'Leyla',
             teacherLastName: 'Hüseynova',
             delete: 0,
+            sort: 2,
         },
         {
             id: 3,
@@ -35,6 +37,7 @@ export class LessonService {
             teacherFirstName: 'Kamran',
             teacherLastName: 'Quliyev',
             delete: 0,
+            sort: 3,
         },
         {
             id: 4,
@@ -45,6 +48,7 @@ export class LessonService {
             teacherFirstName: 'Sevda',
             teacherLastName: 'Məmmədova',
             delete: 0,
+            sort: 4,
         },
         {
             id: 5,
@@ -55,6 +59,7 @@ export class LessonService {
             teacherFirstName: 'Ramin',
             teacherLastName: 'Əhmədov',
             delete: 0,
+            sort: 5,
         },
         {
             id: 6,
@@ -65,6 +70,7 @@ export class LessonService {
             teacherFirstName: 'Fəridə',
             teacherLastName: 'Nağıyeva',
             delete: 0,
+            sort: 6,
         }
     ]);
 
@@ -123,7 +129,7 @@ export class LessonService {
             }
         ])
     }
-    updateLesson(id: number, slug: string, updated: Omit<Lesson, 'id' | 'code' | 'slug' | 'delete'>) {
+    updateLesson(id: number, slug: string, updated: Omit<Lesson, 'id' | 'code' | 'slug' | 'delete' | 'sort'>) {
         this.lessonsSignal.update(lessons =>
             lessons.map(lesson =>
                 lesson.id === id

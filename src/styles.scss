@@ -131,13 +131,15 @@ section {
         width: calc(100% - 50px);
         height: 100vh;
         overflow: hidden;
-        @media (min-width: 576px){
+
+        @media (min-width: 576px) {
             width: calc(100% - 80px);
         }
-        &.fullw{
+
+        &.fullw {
             width: 100%;
         }
-        
+
 
         .content-wrapper {
             flex: 1;
@@ -175,7 +177,7 @@ section {
     overflow-x: auto;
     @include column-start;
 
-    .table-title{
+    .table-title {
         color: light-dark($txt-color-3, $txt-color-1);
     }
 
@@ -189,7 +191,10 @@ section {
         tr * {
             background-color: light-dark($bg-color-4, $bg-color-2);
             color: light-dark($txt-color-3, $txt-color-1);
-            i,button,a{
+
+            i,
+            button,
+            a {
                 background-color: transparent !important;
             }
         }
@@ -199,7 +204,10 @@ section {
         tr:nth-child(odd) * {
             background-color: light-dark(#F6F7FB, #3D4854);
             color: light-dark($txt-color-3, $txt-color-1);
-            i,button,a{
+
+            i,
+            button,
+            a {
                 background-color: transparent !important;
             }
         }
@@ -208,7 +216,10 @@ section {
             background-color: light-dark($bg-color-4, $bg-color-2);
             color: light-dark($txt-color-3, $txt-color-1);
             border: none;
-            i,button,a{
+
+            i,
+            button,
+            a {
                 background-color: transparent !important;
             }
         }
@@ -230,19 +241,20 @@ section {
     padding: 20px;
     @include row-justify-start;
     flex-wrap: wrap;
-    gap: 15px;
+    gap: 10px;
     background-color: light-dark($bg-color-3, $bg-color-1);
     margin-bottom: 30px;
     border-radius: 5px;
 
-    
+
 
     .delete-all,
-    .delete-select {
+    .delete-select,
+    .sortable-btn {
         display: none;
         background-color: #727CF5;
         color: #fff;
-        padding: 10px;
+        padding: 5px 10px;
         border-radius: 5px;
         font-size: 12px;
 
@@ -252,7 +264,7 @@ section {
 
         @media (min-width: 768px) {
             font-size: 14px;
-            padding: 10px 20px;
+            padding: 5px 20px;
         }
 
         @media (min-width: 992px) {
@@ -262,26 +274,27 @@ section {
 }
 
 .add-button {
-        background-color: #FA5C7C;
-        color: #fff;
-        padding: 10px;
-        border-radius: 5px;
-        @include row-center;
-        gap: 10px;
-        font-size: 12px;
+    background-color: #FA5C7C;
+    color: #fff;
+    padding: 5px 10px;
+    border-radius: 5px;
+    @include row-center;
+    gap: 10px;
+    font-size: 12px;
 
-        @media (min-width: 768px) {
-            font-size: 14px;
-            padding: 10px 20px;
-        }
-
-        @media (min-width: 992px) {
-            font-size: 16px;
-        }
-        &.btn-hidden{
-            display: none;
-        }
+    @media (min-width: 768px) {
+        font-size: 14px;
+        padding: 5px 20px;
     }
+
+    @media (min-width: 992px) {
+        font-size: 16px;
+    }
+
+    &.btn-hidden {
+        display: none;
+    }
+}
 
 .operations {
     @include row-justify-start;
@@ -298,7 +311,8 @@ section {
             color: #FA5C7C !important;
         }
     }
-    .recover-btn{
+
+    .recover-btn {
         &:hover i {
             color: #0ACF97 !important;
         }
@@ -313,8 +327,8 @@ section {
             color: #0ACF97 !important;
         }
     }
-
 }
+
 
 
 
@@ -351,6 +365,7 @@ form.general-form {
             &.is-invalid {
                 border-bottom-color: #FA5C7C;
             }
+
             &.is-valid {
                 border-bottom-color: #0ACF97;
             }
@@ -361,7 +376,7 @@ form.general-form {
             position: relative;
 
             i.fa-chevron-down {
-                
+
                 position: absolute;
                 right: 15px;
                 top: 50%;
@@ -389,9 +404,11 @@ form.general-form {
                 box-shadow: none;
                 border-color: light-dark(#e5e8eb, #464f5b);
             }
+
             &.is-invalid {
                 border-bottom-color: #FA5C7C;
             }
+
             &.is-valid {
                 border-bottom-color: #0ACF97;
             }
@@ -418,12 +435,19 @@ form.general-form {
     }
 }
 
-span.highlight{
+span.highlight {
     color: #0ACF97 !important;
 }
 
-.no-result-message{
+.no-result-message {
     display: none;
     margin: 30px 0;
     color: light-dark($txt-color-3, $txt-color-2);
 }
+
+.sort-btn{
+    &.active i{
+        color: #0ACF97 !important;
+    }
+}
+

@@ -55,7 +55,7 @@ export class EditLesson {
     if (!isValid) return;
 
 
-    const updatedLesson: Omit<Lesson, 'id' | 'code' | 'slug' | 'delete'> = {
+    const updatedLesson: Omit<Lesson, 'id' | 'code' | 'slug' | 'delete' | 'sort'> = {
       name: this.name.trim(),
       class: this.classNumber,
       teacherFirstName: this.teacherFirstName.trim(),

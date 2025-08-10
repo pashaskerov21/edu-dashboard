@@ -40,6 +40,7 @@ export class AddStudent {
       lastname: this.lastname.trim(),
       class: this.class!,
       delete: 0,
+      sort: newId,
     }
 
     this.studentService.addStudent(newStudent);

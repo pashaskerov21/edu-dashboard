@@ -6,7 +6,6 @@ import { ExamService } from '../exam.service';
 import { LessonService } from '../../lessons/lesson.service';
 import { Exam } from '../exam.model';
 import Swal from 'sweetalert2';
-import { NgClass, NgFor, NgIf } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Lesson } from '../../lessons/lesson.model';
 import { Student } from '../../students/student.model';
@@ -86,6 +85,7 @@ export class AddExam {
       date: this.date,
       score: this.score!,
       delete: 0,
+      sort: newId,
     }
 
     this.examService.addExam(newExam);

@@ -23,6 +23,7 @@ Hər biri üçün CRUD əməliyyatları həyata keçirilə bilər (Əlavə et, Y
 - Yeni məlumatların əlavə edilməsi (Create)
 - Mövcud məlumatların redaktəsi (Update)
 - Məlumatların silinməsi — tək və ya toplu (Delete)
+- Cədvəl sətirlərinin drag-and-drop üsulu ilə yenidən sıralanması(Sortable JS)
 - Silinmiş məlumatların bərpası (Recovery)
 - Axtarış funksiyası (bütün məlumatlar üzrə)
 
@@ -46,6 +47,7 @@ Hər biri üçün CRUD əməliyyatları həyata keçirilə bilər (Əlavə et, Y
 - Angular Router
 - Angular Signals
 - `ngx-translate`
+- Sortable.js
 - SweetAlert2
 
 ---
