@@ -1,7 +1,7 @@
 import { NgFor, NgIf } from '@angular/common';
 import { Component } from '@angular/core';
 import { ActivatedRoute, NavigationEnd, Router, RouterLink } from '@angular/router';
-import { TranslateModule, TranslateService } from '@ngx-translate/core';
+import { TranslateModule } from '@ngx-translate/core';
 import { filter } from 'rxjs';
 
 @Component({
@@ -16,7 +16,6 @@ export class Breadcrumb {
   constructor(
     private router: Router,
     private activatedRoute: ActivatedRoute,
-    private translate: TranslateService
   ) {
     this.router.events.pipe(filter(e => e instanceof NavigationEnd)).subscribe(() => {
       this.breadcrumbs = this.createBreadcrumbs(this.activatedRoute.root);

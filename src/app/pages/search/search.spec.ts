@@ -1,6 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { Search } from './search';
+import { TranslateModule } from '@ngx-translate/core';
+import { provideRouter, withComponentInputBinding } from '@angular/router';
 
 describe('Search', () => {
   let component: Search;
@@ -8,7 +10,10 @@ describe('Search', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [Search]
+      imports: [Search, TranslateModule.forRoot()],
+      providers: [
+        provideRouter([], withComponentInputBinding()) 
+      ]
     })
     .compileComponents();
 

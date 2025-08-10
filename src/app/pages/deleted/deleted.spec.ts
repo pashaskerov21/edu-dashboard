@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { Deleted } from './deleted';
+import { TranslateModule } from '@ngx-translate/core';
 
 describe('Deleted', () => {
   let component: Deleted;
@@ -8,7 +9,7 @@ describe('Deleted', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [Deleted]
+      imports: [Deleted,TranslateModule.forRoot()]
     })
     .compileComponents();
 

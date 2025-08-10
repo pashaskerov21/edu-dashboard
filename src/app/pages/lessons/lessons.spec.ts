@@ -1,6 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { Lessons } from './lessons';
+import { TranslateModule } from '@ngx-translate/core';
+import { provideRouter, withComponentInputBinding } from '@angular/router';
 
 describe('Lessons', () => {
   let component: Lessons;
@@ -8,7 +10,10 @@ describe('Lessons', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [Lessons]
+      imports: [Lessons, TranslateModule.forRoot()],
+      providers: [
+        provideRouter([], withComponentInputBinding()) 
+      ]
     })
     .compileComponents();
 

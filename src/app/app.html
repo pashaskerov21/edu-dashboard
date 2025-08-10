@@ -1,4 +1,5 @@
 <div class="app-wrapper">
+    <h1 class="d-none" style="display: none;">{{title()}}</h1>
     <app-sidebar [isOpen]="isSidebarOpen" (toggleSidebar)="toggleSidebar()" (toggleSidebarWithLink)="toggleSidebarWithLink()"/>
     <div class="right-wrapper" [class.fullw]="isSidebarOpen">
         <app-navbar (toggleSidebar)="toggleSidebar()" (toggleTheme)="toggleTheme()" [currentTheme]="currentTheme" [currentLang]="currentLang" (languageChange)="setLanguage($event)" />

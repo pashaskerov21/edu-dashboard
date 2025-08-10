@@ -14,7 +14,7 @@ import { Breadcrumb } from './components/breadcrumb/breadcrumb';
   styleUrl: './app.scss'
 })
 export class App {
-  protected readonly title = signal('edu-dashboard');
+  protected readonly title = signal('Hello, edu-dashboard');
 
   isSidebarOpen: boolean = false;
   private isBrowser: boolean;
