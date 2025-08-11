@@ -8,7 +8,7 @@
         {{"delete-selected" | translate}}
     </button>
     <button (click)="toggleDrag()" class="sortable-btn" [class.active]="isDraggingActive"
-        [class.d-block]="lessonService.getLessons().length > 0">
+        [class.d-block]="examService.getExams().length > 0">
         {{'sort' | translate}}
     </button>
 </div>

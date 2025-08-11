@@ -238,16 +238,11 @@ section {
 
 .main-operations {
     width: 100%;
-    padding: 20px;
     @include row-justify-start;
     flex-wrap: wrap;
     gap: 10px;
-    background-color: light-dark($bg-color-3, $bg-color-1);
     margin-bottom: 30px;
     border-radius: 5px;
-
-
-
     .delete-all,
     .delete-select,
     .sortable-btn {
